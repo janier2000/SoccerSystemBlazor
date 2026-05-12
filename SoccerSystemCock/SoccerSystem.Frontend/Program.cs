@@ -10,4 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7140") });
 builder.Services.AddScoped<IRepository, Repository>();
 
+// este es para  e nuge del idioma [Microsoft.Extensions.Localization]
+builder.Services.AddLocalization();
+
 await builder.Build().RunAsync();

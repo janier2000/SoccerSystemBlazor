@@ -1,12 +1,15 @@
-using SoccerSystem.Shared.Entites;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using SoccerSystem.Frontend.Repositories;
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Resources;
 
 namespace SoccerSystem.Frontend.Pages.Countries;
 
 public partial class CountriesIndex
 {
     [Inject] private IRepository Repository { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
 
     private List<Country>? Countries { get; set; }
 
