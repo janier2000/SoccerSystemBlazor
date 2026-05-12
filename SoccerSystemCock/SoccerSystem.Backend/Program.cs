@@ -22,4 +22,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+//Agregamos estas líneas al Program del proyecto Backend para habilitar su consumo:
+//apliaccion usa cors acepta cualquier metodo, header, peticion esto
+//ayuda cualquier peticion
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
 app.Run();
