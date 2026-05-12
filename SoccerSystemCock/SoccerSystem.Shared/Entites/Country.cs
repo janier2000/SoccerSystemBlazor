@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerSystem.Shared.Entites
-{
-    public class Country
-    {
-        public int Id { get; set; }
+namespace SoccerSystem.Shared.Entites;
 
-        [MaxLength(100)]
-        [Required]
-        public string Name { get; set; } = null!;
-    }
+public class Country
+{
+    public int Id { get; set; }
+
+    [MaxLength(100)]
+    [Required]
+    public string Name { get; set; } = null!;
 }
