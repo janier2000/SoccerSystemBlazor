@@ -6,17 +6,8 @@
     <a class="btn btn-primary" href="/countries/create">Nuevo País</a>
 </div>
 
-
-@if (Countries is null)
-{
-    @* <Loading />  *@
-    <p>Cargando</p>
-}
-else
-{
-
-@* <GenericList MyList="Countries">
-    <Body> *@
+<GenericList MyList="Countries">
+    <Body>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -39,6 +30,5 @@ else
                 }
             </tbody>
         </table>
- @*    </Body>
-</GenericList> *@
-}
+    </Body>
+</GenericList>
