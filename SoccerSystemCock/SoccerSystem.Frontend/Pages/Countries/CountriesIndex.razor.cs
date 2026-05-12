@@ -1,8 +1,8 @@
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using SoccerSystem.Frontend.Repositories;
-using SoccerSystem.Shared.Entites;
-using SoccerSystem.Shared.Resources;
 
 namespace SoccerSystem.Frontend.Pages.Countries;
 
