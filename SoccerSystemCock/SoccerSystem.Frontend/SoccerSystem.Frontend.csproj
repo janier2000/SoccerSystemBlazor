@@ -22,4 +22,8 @@
     <ProjectReference Include="..\SoccerSystem.Shared\SoccerSystem.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
