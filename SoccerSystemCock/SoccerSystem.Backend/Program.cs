@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SoccerSystem.Backend.Data;
+using SoccerSystem.Backend.Helpers;
 using SoccerSystem.Backend.Repositories.Implementations;
 using SoccerSystem.Backend.Repositories.Interfaces;
 using SoccerSystem.Backend.UnitsOfWork.Implementations;
@@ -24,10 +25,15 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnec
 // para agregar datos ala base de datos
 builder.Services.AddTransient<SeedDb>();
 
+// para agregar imagenes a azure storage
+builder.Services.AddScoped<IFileStorage, FileStorage>();
+
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
+builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
+builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
 
 var app = builder.Build();
 
