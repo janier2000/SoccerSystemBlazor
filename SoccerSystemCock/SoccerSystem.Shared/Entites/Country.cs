@@ -14,4 +14,9 @@ public class Country
     [MaxLength(100)]
     [Required]
     public string Name { get; set; } = null!;
+
+    public ICollection<Team>? Teams { get; set; }
+
+    // nsoe apmea en la bd es de lectura, no se guarda en la bd, es solo para mostrar el numero de equipos que tiene cada pais
+    public int TeamsCount => Teams == null ? 0 : Teams.Count;
 }
