@@ -1,8 +1,10 @@
-﻿using SoccerSystem.Backend.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SoccerSystem.Backend.Data;
+using SoccerSystem.Backend.Helpers;
+using SoccerSystem.Backend.Repositories.Interfaces;
+using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
 using SoccerSystem.Shared.Responses;
-using Microsoft.EntityFrameworkCore;
-using SoccerSystem.Backend.Repositories.Interfaces;
 
 namespace SoccerSystem.Backend.Repositories.Implementations;
 
@@ -17,11 +19,52 @@ public class CountriesRepository : GenericRepository<Country>, ICountriesReposit
 
     public override async Task<ActionResponse<IEnumerable<Country>>> GetAsync()
     {
-        var countries = await _context.Countries.Include(c => c.Teams).ToListAsync();
+        var countries = await _context.Countries
+                                     .Include(c => c.Teams)
+                                     .OrderBy(c => c.Name)
+                                     .ToListAsync();
         return new ActionResponse<IEnumerable<Country>>
         {
             WasSuccess = true,
             Result = countries
+        };
+    }
+
+    public override async Task<ActionResponse<IEnumerable<Country>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Countries
+            .Include(x => x.Teams)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        return new ActionResponse<IEnumerable<Country>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .OrderBy(x => x.Name)
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Countries.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
         };
     }
 

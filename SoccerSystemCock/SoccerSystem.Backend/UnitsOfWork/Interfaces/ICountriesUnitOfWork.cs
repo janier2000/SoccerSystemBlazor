@@ -1,4 +1,5 @@
-﻿using SoccerSystem.Shared.Entites;
+﻿using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Entites;
 using SoccerSystem.Shared.Responses;
 
 namespace SoccerSystem.Backend.UnitsOfWork.Interfaces;
@@ -10,4 +11,8 @@ public interface ICountriesUnitOfWork
     Task<ActionResponse<IEnumerable<Country>>> GetAsync();
 
     Task<IEnumerable<Country>> GetComboAsync();
+
+    Task<ActionResponse<IEnumerable<Country>>> GetAsync(PaginationDTO pagination);
+
+    Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 }

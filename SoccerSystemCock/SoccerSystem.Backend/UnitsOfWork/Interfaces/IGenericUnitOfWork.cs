@@ -1,4 +1,5 @@
-﻿using SoccerSystem.Shared.Responses;
+﻿using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Responses;
 
 namespace SoccerSystem.Backend.UnitsOfWork.Interfaces;
 
@@ -13,4 +14,8 @@ public interface IGenericUnitOfWork<T> where T : class
     Task<ActionResponse<T>> DeleteAsync(int id);
 
     Task<ActionResponse<T>> GetAsync(int id);
+
+    Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+
+    Task<ActionResponse<int>> GetTotalRecordsAsync();
 }
