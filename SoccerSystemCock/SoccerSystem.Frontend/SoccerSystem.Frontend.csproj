@@ -7,6 +7,220 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\Flags\Afghanistan.png" />
+    <Content Remove="wwwroot\images\Flags\Albania.png" />
+    <Content Remove="wwwroot\images\Flags\Algeria.png" />
+    <Content Remove="wwwroot\images\Flags\Andorra.png" />
+    <Content Remove="wwwroot\images\Flags\Angola.png" />
+    <Content Remove="wwwroot\images\Flags\Antigua And Barbuda.png" />
+    <Content Remove="wwwroot\images\Flags\Argentina.png" />
+    <Content Remove="wwwroot\images\Flags\Armenia.png" />
+    <Content Remove="wwwroot\images\Flags\Australia.png" />
+    <Content Remove="wwwroot\images\Flags\Austria.png" />
+    <Content Remove="wwwroot\images\Flags\Azerbaijan.png" />
+    <Content Remove="wwwroot\images\Flags\Bahrain.png" />
+    <Content Remove="wwwroot\images\Flags\Bangladesh.png" />
+    <Content Remove="wwwroot\images\Flags\Barbados.png" />
+    <Content Remove="wwwroot\images\Flags\Belarus.png" />
+    <Content Remove="wwwroot\images\Flags\Belgium.png" />
+    <Content Remove="wwwroot\images\Flags\Belize.png" />
+    <Content Remove="wwwroot\images\Flags\Benin.png" />
+    <Content Remove="wwwroot\images\Flags\Bhutan.png" />
+    <Content Remove="wwwroot\images\Flags\Bolivia.png" />
+    <Content Remove="wwwroot\images\Flags\Bosnia and Herzegovina.png" />
+    <Content Remove="wwwroot\images\Flags\Botswana.png" />
+    <Content Remove="wwwroot\images\Flags\Brazil.png" />
+    <Content Remove="wwwroot\images\Flags\Brunei.png" />
+    <Content Remove="wwwroot\images\Flags\Bulgaria.png" />
+    <Content Remove="wwwroot\images\Flags\Burkina Faso.png" />
+    <Content Remove="wwwroot\images\Flags\Burundi.png" />
+    <Content Remove="wwwroot\images\Flags\Cambodia.png" />
+    <Content Remove="wwwroot\images\Flags\Cameroon.png" />
+    <Content Remove="wwwroot\images\Flags\Canada.png" />
+    <Content Remove="wwwroot\images\Flags\Cape Verde.png" />
+    <Content Remove="wwwroot\images\Flags\Central African Republic.png" />
+    <Content Remove="wwwroot\images\Flags\Chad.png" />
+    <Content Remove="wwwroot\images\Flags\Chile.png" />
+    <Content Remove="wwwroot\images\Flags\China.png" />
+    <Content Remove="wwwroot\images\Flags\Colombia.png" />
+    <Content Remove="wwwroot\images\Flags\Comoros.png" />
+    <Content Remove="wwwroot\images\Flags\Congo.png" />
+    <Content Remove="wwwroot\images\Flags\Costa Rica.png" />
+    <Content Remove="wwwroot\images\Flags\Cote D'Ivoire (Ivory Coast).png" />
+    <Content Remove="wwwroot\images\Flags\Croatia.png" />
+    <Content Remove="wwwroot\images\Flags\Cuba.png" />
+    <Content Remove="wwwroot\images\Flags\Cyprus.png" />
+    <Content Remove="wwwroot\images\Flags\Czech Republic.png" />
+    <Content Remove="wwwroot\images\Flags\Democratic Republic of the Congo.png" />
+    <Content Remove="wwwroot\images\Flags\Denmark.png" />
+    <Content Remove="wwwroot\images\Flags\Djibouti.png" />
+    <Content Remove="wwwroot\images\Flags\Dominica.png" />
+    <Content Remove="wwwroot\images\Flags\Dominican Republic.png" />
+    <Content Remove="wwwroot\images\Flags\East Timor.png" />
+    <Content Remove="wwwroot\images\Flags\Ecuador.png" />
+    <Content Remove="wwwroot\images\Flags\Egypt.png" />
+    <Content Remove="wwwroot\images\Flags\El Salvador.png" />
+    <Content Remove="wwwroot\images\Flags\Equatorial Guinea.png" />
+    <Content Remove="wwwroot\images\Flags\Eritrea.png" />
+    <Content Remove="wwwroot\images\Flags\Estonia.png" />
+    <Content Remove="wwwroot\images\Flags\Ethiopia.png" />
+    <Content Remove="wwwroot\images\Flags\Fiji Islands.png" />
+    <Content Remove="wwwroot\images\Flags\Finland.png" />
+    <Content Remove="wwwroot\images\Flags\France.png" />
+    <Content Remove="wwwroot\images\Flags\Gabon.png" />
+    <Content Remove="wwwroot\images\Flags\Gambia The.png" />
+    <Content Remove="wwwroot\images\Flags\gb-eng.png" />
+    <Content Remove="wwwroot\images\Flags\gb-nir.png" />
+    <Content Remove="wwwroot\images\Flags\gb-sct.png" />
+    <Content Remove="wwwroot\images\Flags\gb-wls.png" />
+    <Content Remove="wwwroot\images\Flags\Georgia.png" />
+    <Content Remove="wwwroot\images\Flags\Germany.png" />
+    <Content Remove="wwwroot\images\Flags\Ghana.png" />
+    <Content Remove="wwwroot\images\Flags\Greece.png" />
+    <Content Remove="wwwroot\images\Flags\Grenada.png" />
+    <Content Remove="wwwroot\images\Flags\Guatemala.png" />
+    <Content Remove="wwwroot\images\Flags\Guinea-Bissau.png" />
+    <Content Remove="wwwroot\images\Flags\Guinea.png" />
+    <Content Remove="wwwroot\images\Flags\Guyana.png" />
+    <Content Remove="wwwroot\images\Flags\Haiti.png" />
+    <Content Remove="wwwroot\images\Flags\Honduras.png" />
+    <Content Remove="wwwroot\images\Flags\Hungary.png" />
+    <Content Remove="wwwroot\images\Flags\Iceland.png" />
+    <Content Remove="wwwroot\images\Flags\India.png" />
+    <Content Remove="wwwroot\images\Flags\Indonesia.png" />
+    <Content Remove="wwwroot\images\Flags\Iran.png" />
+    <Content Remove="wwwroot\images\Flags\Iraq.png" />
+    <Content Remove="wwwroot\images\Flags\Ireland.png" />
+    <Content Remove="wwwroot\images\Flags\Israel.png" />
+    <Content Remove="wwwroot\images\Flags\Italy.png" />
+    <Content Remove="wwwroot\images\Flags\Jamaica.png" />
+    <Content Remove="wwwroot\images\Flags\Japan.png" />
+    <Content Remove="wwwroot\images\Flags\Jordan.png" />
+    <Content Remove="wwwroot\images\Flags\Kazakhstan.png" />
+    <Content Remove="wwwroot\images\Flags\Kenya.png" />
+    <Content Remove="wwwroot\images\Flags\Kiribati.png" />
+    <Content Remove="wwwroot\images\Flags\Kuwait.png" />
+    <Content Remove="wwwroot\images\Flags\Kyrgyzstan.png" />
+    <Content Remove="wwwroot\images\Flags\Laos.png" />
+    <Content Remove="wwwroot\images\Flags\Latvia.png" />
+    <Content Remove="wwwroot\images\Flags\Lebanon.png" />
+    <Content Remove="wwwroot\images\Flags\Lesotho.png" />
+    <Content Remove="wwwroot\images\Flags\Liberia.png" />
+    <Content Remove="wwwroot\images\Flags\Libya.png" />
+    <Content Remove="wwwroot\images\Flags\Liechtenstein.png" />
+    <Content Remove="wwwroot\images\Flags\Lithuania.png" />
+    <Content Remove="wwwroot\images\Flags\Luxembourg.png" />
+    <Content Remove="wwwroot\images\Flags\Macedonia.png" />
+    <Content Remove="wwwroot\images\Flags\Madagascar.png" />
+    <Content Remove="wwwroot\images\Flags\Malawi.png" />
+    <Content Remove="wwwroot\images\Flags\Malaysia.png" />
+    <Content Remove="wwwroot\images\Flags\Maldives.png" />
+    <Content Remove="wwwroot\images\Flags\Mali.png" />
+    <Content Remove="wwwroot\images\Flags\Malta.png" />
+    <Content Remove="wwwroot\images\Flags\Mauritania.png" />
+    <Content Remove="wwwroot\images\Flags\Mauritius.png" />
+    <Content Remove="wwwroot\images\Flags\Mexico.png" />
+    <Content Remove="wwwroot\images\Flags\Micronesia.png" />
+    <Content Remove="wwwroot\images\Flags\Moldova.png" />
+    <Content Remove="wwwroot\images\Flags\Mongolia.png" />
+    <Content Remove="wwwroot\images\Flags\Montenegro.png" />
+    <Content Remove="wwwroot\images\Flags\Morocco.png" />
+    <Content Remove="wwwroot\images\Flags\Mozambique.png" />
+    <Content Remove="wwwroot\images\Flags\Myanmar.png" />
+    <Content Remove="wwwroot\images\Flags\Namibia.png" />
+    <Content Remove="wwwroot\images\Flags\Nauru.png" />
+    <Content Remove="wwwroot\images\Flags\Nepal.png" />
+    <Content Remove="wwwroot\images\Flags\Netherlands.png" />
+    <Content Remove="wwwroot\images\Flags\New Zealand.png" />
+    <Content Remove="wwwroot\images\Flags\Nicaragua.png" />
+    <Content Remove="wwwroot\images\Flags\Niger.png" />
+    <Content Remove="wwwroot\images\Flags\Nigeria.png" />
+    <Content Remove="wwwroot\images\Flags\North Korea.png" />
+    <Content Remove="wwwroot\images\Flags\Norway.png" />
+    <Content Remove="wwwroot\images\Flags\Oman.png" />
+    <Content Remove="wwwroot\images\Flags\Pakistan.png" />
+    <Content Remove="wwwroot\images\Flags\Palau.png" />
+    <Content Remove="wwwroot\images\Flags\Panama.png" />
+    <Content Remove="wwwroot\images\Flags\Papua New Guinea.png" />
+    <Content Remove="wwwroot\images\Flags\Paraguay.png" />
+    <Content Remove="wwwroot\images\Flags\Peru.png" />
+    <Content Remove="wwwroot\images\Flags\Philippines.png" />
+    <Content Remove="wwwroot\images\Flags\Poland.png" />
+    <Content Remove="wwwroot\images\Flags\Portugal.png" />
+    <Content Remove="wwwroot\images\Flags\Qatar.png" />
+    <Content Remove="wwwroot\images\Flags\Romania.png" />
+    <Content Remove="wwwroot\images\Flags\Russia.png" />
+    <Content Remove="wwwroot\images\Flags\Rwanda.png" />
+    <Content Remove="wwwroot\images\Flags\Saint Kitts And Nevis.png" />
+    <Content Remove="wwwroot\images\Flags\Saint Lucia.png" />
+    <Content Remove="wwwroot\images\Flags\Saint Vincent And The Grenadines.png" />
+    <Content Remove="wwwroot\images\Flags\Samoa.png" />
+    <Content Remove="wwwroot\images\Flags\San Marino.png" />
+    <Content Remove="wwwroot\images\Flags\Sao Tome and Principe.png" />
+    <Content Remove="wwwroot\images\Flags\Saudi Arabia.png" />
+    <Content Remove="wwwroot\images\Flags\Senegal.png" />
+    <Content Remove="wwwroot\images\Flags\Serbia.png" />
+    <Content Remove="wwwroot\images\Flags\Seychelles.png" />
+    <Content Remove="wwwroot\images\Flags\Sierra Leone.png" />
+    <Content Remove="wwwroot\images\Flags\Singapore.png" />
+    <Content Remove="wwwroot\images\Flags\Slovakia.png" />
+    <Content Remove="wwwroot\images\Flags\Slovenia.png" />
+    <Content Remove="wwwroot\images\Flags\Solomon Islands.png" />
+    <Content Remove="wwwroot\images\Flags\Somalia.png" />
+    <Content Remove="wwwroot\images\Flags\South Africa.png" />
+    <Content Remove="wwwroot\images\Flags\South Korea.png" />
+    <Content Remove="wwwroot\images\Flags\South Sudan.png" />
+    <Content Remove="wwwroot\images\Flags\Spain.png" />
+    <Content Remove="wwwroot\images\Flags\Sri Lanka.png" />
+    <Content Remove="wwwroot\images\Flags\Sudan.png" />
+    <Content Remove="wwwroot\images\Flags\Suriname.png" />
+    <Content Remove="wwwroot\images\Flags\Swaziland.png" />
+    <Content Remove="wwwroot\images\Flags\Sweden.png" />
+    <Content Remove="wwwroot\images\Flags\Switzerland.png" />
+    <Content Remove="wwwroot\images\Flags\Syria.png" />
+    <Content Remove="wwwroot\images\Flags\Taiwan.png" />
+    <Content Remove="wwwroot\images\Flags\Tajikistan.png" />
+    <Content Remove="wwwroot\images\Flags\Tanzania.png" />
+    <Content Remove="wwwroot\images\Flags\Thailand.png" />
+    <Content Remove="wwwroot\images\Flags\The Bahamas.png" />
+    <Content Remove="wwwroot\images\Flags\Togo.png" />
+    <Content Remove="wwwroot\images\Flags\Tonga.png" />
+    <Content Remove="wwwroot\images\Flags\Trinidad And Tobago.png" />
+    <Content Remove="wwwroot\images\Flags\Tunisia.png" />
+    <Content Remove="wwwroot\images\Flags\Turkey.png" />
+    <Content Remove="wwwroot\images\Flags\Turkmenistan.png" />
+    <Content Remove="wwwroot\images\Flags\Tuvalu.png" />
+    <Content Remove="wwwroot\images\Flags\Uganda.png" />
+    <Content Remove="wwwroot\images\Flags\Ukraine.png" />
+    <Content Remove="wwwroot\images\Flags\United Arab Emirates.png" />
+    <Content Remove="wwwroot\images\Flags\United Kingdom.png" />
+    <Content Remove="wwwroot\images\Flags\United States.png" />
+    <Content Remove="wwwroot\images\Flags\Uruguay.png" />
+    <Content Remove="wwwroot\images\Flags\Uzbekistan.png" />
+    <Content Remove="wwwroot\images\Flags\Vanuatu.png" />
+    <Content Remove="wwwroot\images\Flags\Venezuela.png" />
+    <Content Remove="wwwroot\images\Flags\Vietnam.png" />
+    <Content Remove="wwwroot\images\Flags\Virgin Islands (US).png" />
+    <Content Remove="wwwroot\images\Flags\Yemen.png" />
+    <Content Remove="wwwroot\images\Flags\Zambia.png" />
+    <Content Remove="wwwroot\images\Flags\Zimbabwe.png" />
+    <Content Remove="wwwroot\images\Tournaments\Copa América - 2025.png" />
+    <Content Remove="wwwroot\images\Tournaments\Copa Oro - 2025.png" />
+    <Content Remove="wwwroot\images\Users\Angelina.jpg" />
+    <Content Remove="wwwroot\images\Users\bob.jpg" />
+    <Content Remove="wwwroot\images\Users\Brad.jpg" />
+    <Content Remove="wwwroot\images\Users\celia.jpg" />
+    <Content Remove="wwwroot\images\Users\fredy.jpg" />
+    <Content Remove="wwwroot\images\Users\hector.jpg" />
+    <Content Remove="wwwroot\images\Users\JuanZuluaga.jpg" />
+    <Content Remove="wwwroot\images\Users\LedysBedoya.jpg" />
+    <Content Remove="wwwroot\images\Users\Liv.jpg" />
+    <Content Remove="wwwroot\images\Users\otep.jpg" />
+    <Content Remove="wwwroot\images\Users\ozzy.jpg" />
+    <Content Remove="wwwroot\images\Users\selena.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.8" />
@@ -26,7 +240,642 @@
     <Folder Include="Images\Flags\" />
     <Folder Include="Images\Users\" />
     <Folder Include="Images\Tournaments\" />
-    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\Flags\Afghanistan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Albania.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Algeria.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Andorra.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Angola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Antigua And Barbuda.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Argentina.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Armenia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Australia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Austria.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Azerbaijan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bahrain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bangladesh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Barbados.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Belarus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Belgium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Belize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Benin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bhutan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bolivia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bosnia and Herzegovina.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Botswana.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Brazil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Brunei.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Bulgaria.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Burkina Faso.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Burundi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cambodia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cameroon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Canada.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cape Verde.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Central African Republic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Chad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Chile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\China.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Colombia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Comoros.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Congo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Costa Rica.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cote D'Ivoire (Ivory Coast).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Croatia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cuba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Cyprus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Czech Republic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Democratic Republic of the Congo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Denmark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Djibouti.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Dominica.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Dominican Republic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\East Timor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Ecuador.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Egypt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\El Salvador.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Equatorial Guinea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Eritrea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Estonia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Ethiopia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Fiji Islands.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Finland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\France.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Gabon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Gambia The.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\gb-eng.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\gb-nir.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\gb-sct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\gb-wls.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Georgia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Germany.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Ghana.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Greece.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Grenada.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Guatemala.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Guinea-Bissau.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Guinea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Guyana.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Haiti.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Honduras.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Hungary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Iceland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\India.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Indonesia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Iran.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Iraq.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Ireland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Israel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Italy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Jamaica.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Japan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Jordan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Kazakhstan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Kenya.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Kiribati.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Kuwait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Kyrgyzstan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Laos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Latvia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Lebanon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Lesotho.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Liberia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Libya.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Liechtenstein.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Lithuania.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Luxembourg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Macedonia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Madagascar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Malawi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Malaysia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Maldives.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mali.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Malta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mauritania.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mauritius.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mexico.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Micronesia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Moldova.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mongolia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Montenegro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Morocco.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Mozambique.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Myanmar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Namibia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Nauru.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Nepal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Netherlands.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\New Zealand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Nicaragua.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Niger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Nigeria.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\North Korea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Norway.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Oman.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Pakistan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Palau.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Panama.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Papua New Guinea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Paraguay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Peru.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Philippines.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Poland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Portugal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Qatar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Romania.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Russia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Rwanda.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Saint Kitts And Nevis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Saint Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Saint Vincent And The Grenadines.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Samoa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\San Marino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Sao Tome and Principe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Saudi Arabia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Senegal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Serbia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Seychelles.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Sierra Leone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Singapore.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Slovakia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Slovenia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Solomon Islands.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Somalia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\South Africa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\South Korea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\South Sudan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Spain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Sri Lanka.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Sudan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Suriname.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Swaziland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Sweden.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Switzerland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Syria.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Taiwan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Tajikistan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Tanzania.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Thailand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\The Bahamas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Togo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Tonga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Trinidad And Tobago.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Tunisia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Turkey.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Turkmenistan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Tuvalu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Uganda.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Ukraine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\United Arab Emirates.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\United Kingdom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\United States.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Uruguay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Uzbekistan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Vanuatu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Venezuela.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Vietnam.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Virgin Islands (US).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Yemen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Zambia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Flags\Zimbabwe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Tournaments\Copa América - 2025.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Tournaments\Copa Oro - 2025.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\Angelina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\bob.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\Brad.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\celia.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\fredy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\hector.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\JuanZuluaga.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\LedysBedoya.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\Liv.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\otep.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\ozzy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\images\Users\selena.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

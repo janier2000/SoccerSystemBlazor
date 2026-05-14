@@ -44,7 +44,7 @@ public class SeedDb
                     var fileBytes = File.ReadAllBytes(filePath);
                     //comentado tempralmente no funciono
                     //imagePath = await _fileStorage.SaveFileAsync(fileBytes, "jpg", "flags");
-                    imagePath = filePath;
+                    imagePath = $"\\Images\\Flags\\{country.Name}.png"; ;
                 }
                 _context.Teams.Add(new Team { Name = country.Name, Country = country!, Image = imagePath });
 
