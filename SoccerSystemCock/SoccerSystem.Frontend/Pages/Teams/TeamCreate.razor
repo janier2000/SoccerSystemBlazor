@@ -1,8 +1,10 @@
-﻿@page "/teams/create"
-
-<h3>@Localizer["Create"] @Localizer["Team"]</h3>
-
-<TeamForm @ref="teamForm"
-          TeamDTO="teamDTO" 
-          OnValidSubmit="CreateAsync"
-          ReturnAction="Return" />
+﻿@* @page "/teams/create"
+<h3>@Localizer["Create"] @Localizer["Team"]</h3> *@
+<MudDialog>
+    <DialogContent>
+        <TeamForm @ref="teamForm"
+                  TeamDTO="teamDTO" 
+                  OnValidSubmit="CreateAsync" 
+                  ReturnAction="Return" />
+    </DialogContent>
+</MudDialog>
