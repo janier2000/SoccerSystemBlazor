@@ -1,6 +1,7 @@
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 using SoccerSystem.Frontend;
 using SoccerSystem.Frontend.Repositories;
 
@@ -16,5 +17,8 @@ builder.Services.AddLocalization();
 
 // este es para  el nuge de mensaje  [CurrieTechnologies.Razor.SweetAlert2]
 builder.Services.AddSweetAlert2();
+
+//este es para  el nuge  [MudBlazor]
+builder.Services.AddMudServices();
 
 await builder.Build().RunAsync();
