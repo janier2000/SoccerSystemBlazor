@@ -1,15 +1,16 @@
 using MudBlazor;
 using System.Net;
-using SoccerSystem.Shared.Entites;
-using SoccerSystem.Frontend.Shared;
-using SoccerSystem.Shared.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using SoccerSystem.Frontend.Repositories;
-using SoccerSystem.Frontend.Pages.Countries;
+using SoccerSystem.Frontend.Shared;
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Resources;
 
 namespace SoccerSystem.Frontend.Pages.Teams;
 
+[Authorize(Roles = "Admin")]
 public partial class TeamsIndex
 {
     private List<Team>? Teams { get; set; }

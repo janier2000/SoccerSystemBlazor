@@ -5,10 +5,12 @@ using SoccerSystem.Frontend.Shared;
 using SoccerSystem.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Authorization;
 using SoccerSystem.Frontend.Repositories;
 
 namespace SoccerSystem.Frontend.Pages.Countries;
 
+[Authorize(Roles = "Admin")]
 public partial class CountriesIndex
 {
     private List<Country>? Countries { get; set; }

@@ -1,8 +1,10 @@
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using SoccerSystem.Frontend;
+using SoccerSystem.Frontend.AuthenticationProviders;
 using SoccerSystem.Frontend.Repositories;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -20,5 +22,10 @@ builder.Services.AddSweetAlert2();
 
 //este es para  el nuge  [MudBlazor]
 builder.Services.AddMudServices();
+
+// este es para  el nuge de autorizacion [Microsoft.AspNetCore.Components.Authorization]
+// el AuthenticationProviderTest es un proveedor de autenticacion de prueba que devuelve un usuario anonimo osea para ejecutar manualment
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationProviderTest>();
 
 await builder.Build().RunAsync();
