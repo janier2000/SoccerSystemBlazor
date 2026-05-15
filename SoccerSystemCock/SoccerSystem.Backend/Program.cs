@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SoccerSystem.Backend.Data;
 using SoccerSystem.Backend.Helpers;
 using SoccerSystem.Backend.Repositories.Implementations;
@@ -7,6 +10,7 @@ using SoccerSystem.Backend.Repositories.Interfaces;
 using SoccerSystem.Backend.UnitsOfWork.Implementations;
 using SoccerSystem.Backend.UnitsOfWork.Interfaces;
 using SoccerSystem.Shared.Entites;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +25,40 @@ builder.Services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// aca permite poder agregar tolen manualmente en swagger, para que se pueda probar la autenticacion con JWT desde la interfaz de swagger, esto es muy util para probar los endpoints protegidos por autenticacion sin necesidad de usar herramientas externas como Postman o Insomnia. Al agregar esta configuracion, se habilita un campo en la interfaz de Swagger donde se puede ingresar el token JWT y luego usarlo para autenticar las solicitudes a los endpoints protegidos.
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Orders Backend", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = @"JWT Authorization header using the Bearer scheme. <br /> <br />
+                      Enter 'Bearer' [space] and then your token in the text input below.<br /> <br />
+                      Example: 'Bearer 12345abcdef'<br /> <br />",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+      {
+        {
+          new OpenApiSecurityScheme
+          {
+            Reference = new OpenApiReference
+              {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+              },
+              Scheme = "oauth2",
+              Name = "Bearer",
+              In = ParameterLocation.Header,
+            },
+            new List<string>()
+          }
+        });
+});
+
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
 
 // para agregar datos ala base de datos
@@ -52,12 +89,24 @@ builder.Services.AddIdentity<User, IdentityRole>(x =>
     x.Password.RequireLowercase = false;
     x.Password.RequireNonAlphanumeric = false;
     x.Password.RequireUppercase = false;
-    x.Password.RequiredLength = 2;
+    x.Password.RequiredLength = 4;
 })
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
 //----------------------
+
+// esto es para la autenticacion con JWT, se configura el esquema de autenticacion y las opciones de validacion del token. En este caso, se establece que no se validará el emisor ni el público del token, pero sí se validará la vida útil del token y la clave de firma. La clave de firma se obtiene de la configuración de la aplicación, específicamente de la clave "jwtKey". Además, se establece un tiempo de tolerancia (ClockSkew) de cero para evitar problemas con la expiración del token.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
+        ClockSkew = TimeSpan.Zero
+    });
 
 var app = builder.Build();
 
@@ -79,10 +128,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
 //Agregamos estas líneas al Program del proyecto Backend para habilitar su consumo:
 //apliaccion usa cors acepta cualquier metodo, header, peticion esto
 //ayuda cualquier peticion
@@ -92,4 +137,7 @@ app.UseCors(x => x
     .SetIsOriginAllowed(origin => true)
     .AllowCredentials());
 
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();

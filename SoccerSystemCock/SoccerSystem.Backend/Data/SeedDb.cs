@@ -52,7 +52,7 @@ public class SeedDb
                 UserType = userType,
             };
 
-            await _usersUnitOfWork.AddUserAsync(user, "1234");
+            await _usersUnitOfWork.AddUserAsync(user, "123456");
             await _usersUnitOfWork.AddUserToRoleAsync(user, userType.ToString());
         }
         return user;

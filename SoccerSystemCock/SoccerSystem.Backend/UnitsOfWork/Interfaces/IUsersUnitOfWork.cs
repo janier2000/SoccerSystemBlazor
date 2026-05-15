@@ -1,5 +1,6 @@
-﻿using SoccerSystem.Shared.Entites;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Entites;
 
 namespace SoccerSystem.Backend.UnitsOfWork.Interfaces;
 
@@ -14,4 +15,8 @@ public interface IUsersUnitOfWork
     Task AddUserToRoleAsync(User user, string roleName);
 
     Task<bool> IsUserInRoleAsync(User user, string roleName);
+
+    Task<SignInResult> LoginAsync(LoginDTO model);
+
+    Task LogoutAsync();
 }
