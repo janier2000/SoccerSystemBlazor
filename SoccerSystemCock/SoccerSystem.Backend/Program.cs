@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoccerSystem.Backend.Data;
 using SoccerSystem.Backend.Helpers;
@@ -5,6 +6,7 @@ using SoccerSystem.Backend.Repositories.Implementations;
 using SoccerSystem.Backend.Repositories.Interfaces;
 using SoccerSystem.Backend.UnitsOfWork.Implementations;
 using SoccerSystem.Backend.UnitsOfWork.Interfaces;
+using SoccerSystem.Shared.Entites;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,10 +32,32 @@ builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
+
 builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
 builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
+
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
+
+// esto apra reglas del usuario, como que el email sea unico, o que la contraseña no tenga requisitos de seguridad, etc. Esto se hace para facilitar las pruebas y el desarrollo, pero en un entorno de producción se recomienda establecer reglas de seguridad más estrictas para proteger la información de los usuarios.
+// este es debil cuando se pasa a produccion colocarle mas cosas
+builder.Services.AddIdentity<User, IdentityRole>(x =>
+{
+    x.User.RequireUniqueEmail = true;
+    x.Password.RequireDigit = false;
+    x.Password.RequiredUniqueChars = 0;
+    x.Password.RequireLowercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequireUppercase = false;
+    x.Password.RequiredLength = 2;
+})
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
+
+//----------------------
 
 var app = builder.Build();
 
