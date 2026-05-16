@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoccerSystem.Backend.Data;
 
@@ -11,9 +12,11 @@ using SoccerSystem.Backend.Data;
 namespace SoccerSystem.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20260516212904_AddEntitis105")]
+    partial class AddEntitis105
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,49 +177,6 @@ namespace SoccerSystem.Backend.Migrations
                         .IsUnique();
 
                     b.ToTable("Countries");
-                });
-
-            modelBuilder.Entity("SoccerSystem.Shared.Entites.Match", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("GoalsLocal")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GoalsVisitor")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsClosed")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("LocalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TournamentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VisitorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocalId");
-
-                    b.HasIndex("TournamentId");
-
-                    b.HasIndex("VisitorId");
-
-                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("SoccerSystem.Shared.Entites.Team", b =>
@@ -437,33 +397,6 @@ namespace SoccerSystem.Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SoccerSystem.Shared.Entites.Match", b =>
-                {
-                    b.HasOne("SoccerSystem.Shared.Entites.Team", "Local")
-                        .WithMany()
-                        .HasForeignKey("LocalId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SoccerSystem.Shared.Entites.Tournament", "Tournament")
-                        .WithMany("Matches")
-                        .HasForeignKey("TournamentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SoccerSystem.Shared.Entites.Team", "Visitor")
-                        .WithMany()
-                        .HasForeignKey("VisitorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Local");
-
-                    b.Navigation("Tournament");
-
-                    b.Navigation("Visitor");
-                });
-
             modelBuilder.Entity("SoccerSystem.Shared.Entites.Team", b =>
                 {
                     b.HasOne("SoccerSystem.Shared.Entites.Country", "Country")
@@ -519,8 +452,6 @@ namespace SoccerSystem.Backend.Migrations
 
             modelBuilder.Entity("SoccerSystem.Shared.Entites.Tournament", b =>
                 {
-                    b.Navigation("Matches");
-
                     b.Navigation("TournamentTeams");
                 });
 #pragma warning restore 612, 618
