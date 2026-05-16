@@ -61,11 +61,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
 
-// para agregar datos ala base de datos
-builder.Services.AddTransient<SeedDb>();
-
-// para agregar imagenes a azure storage
-builder.Services.AddScoped<IFileStorage, FileStorage>();
+builder.Services.AddTransient<SeedDb>();// para agregar datos ala base de datos
+builder.Services.AddScoped<IFileStorage, FileStorage>();// para agregar imagenes a azure storage
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -83,6 +80,8 @@ builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
 // este es debil cuando se pasa a produccion colocarle mas cosas
 builder.Services.AddIdentity<User, IdentityRole>(x =>
 {
+    x.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;//opcional
+    x.SignIn.RequireConfirmedEmail = true;//requiere email confirmado para iniciar sesion
     x.User.RequireUniqueEmail = true;
     x.Password.RequireDigit = false;
     x.Password.RequiredUniqueChars = 0;
@@ -90,6 +89,9 @@ builder.Services.AddIdentity<User, IdentityRole>(x =>
     x.Password.RequireNonAlphanumeric = false;
     x.Password.RequireUppercase = false;
     x.Password.RequiredLength = 4;
+    x.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); //aqui por 5 minutos se bloquea
+    x.Lockout.MaxFailedAccessAttempts = 3;//caundo el usuarion ingrese la contraseña 3 se bloquea
+    x.Lockout.AllowedForNewUsers = true;//opcional
 })
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
@@ -108,12 +110,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ClockSkew = TimeSpan.Zero
     });
 
+builder.Services.AddScoped<IMailHelper, MailHelper>();//este sirve para la confirmacion del correo
+
 var app = builder.Build();
 
-// para agregar datos ala base de datos
-SeedData(app);
-// para agregar datos ala base de datos
-void SeedData(WebApplication app)
+SeedData(app);// para agregar datos ala base de datos
+void SeedData(WebApplication app)// para agregar datos ala base de datos
 {
     var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
     using var scope = scopedFactory!.CreateScope();
@@ -121,8 +123,7 @@ void SeedData(WebApplication app)
     service!.SeedAsync().Wait();
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())// Configure the HTTP request pipeline.
 {
     app.UseSwagger();
     app.UseSwaggerUI();

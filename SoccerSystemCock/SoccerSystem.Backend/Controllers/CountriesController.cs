@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SoccerSystem.Backend.UnitsOfWork.Interfaces;
 using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
@@ -6,6 +8,7 @@ using SoccerSystem.Shared.Entites;
 namespace SoccerSystem.Backend.Controllers;
 
 [ApiController]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [Route("api/[controller]")]
 public class CountriesController : GenericController<Country>
 {
@@ -16,6 +19,7 @@ public class CountriesController : GenericController<Country>
         _countriesUnitOfWork = countriesUnitOfWork;
     }
 
+    [AllowAnonymous]
     [HttpGet("combo")]
     public async Task<IActionResult> GetComboAsync()
     {
