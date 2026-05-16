@@ -154,4 +154,9 @@ public partial class TournamentsIndex
         await table.ReloadServerData();
         Snackbar.Add(Localizer["RecordDeletedOk"], Severity.Success);
     }
+
+    private void MatchesAction(Tournament tournament)
+    {
+        NavigationManager.NavigateTo($"/tournament/matches/{tournament.Id}");
+    }
 }
