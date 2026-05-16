@@ -1,0 +1,31 @@
+﻿using SoccerSystem.Backend.Repositories.Interfaces;
+using SoccerSystem.Backend.UnitsOfWork.Interfaces;
+using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Responses;
+
+namespace SoccerSystem.Backend.UnitsOfWork.Implementations;
+
+public class TournamentsUnitOfWork : GenericUnitOfWork<Tournament>, ITournamentsUnitOfWork
+{
+    private readonly ITournamentsRepository _tournamentsRepository;
+
+    public TournamentsUnitOfWork(IGenericRepository<Tournament> repository, ITournamentsRepository tournamentsRepository) : base(repository)
+    {
+        _tournamentsRepository = tournamentsRepository;
+    }
+
+    public async Task<ActionResponse<Tournament>> AddAsync(TournamentDTO tournamentDTO) => await _tournamentsRepository.AddAsync(tournamentDTO);
+
+    public async Task<IEnumerable<Tournament>> GetComboAsync() => await _tournamentsRepository.GetComboAsync();
+
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination) => await _tournamentsRepository.GetTotalRecordsAsync(pagination);
+
+    public async Task<ActionResponse<Tournament>> UpdateAsync(TournamentDTO tournamentDTO) => await _tournamentsRepository.UpdateAsync(tournamentDTO);
+
+    public override async Task<ActionResponse<Tournament>> GetAsync(int id) => await _tournamentsRepository.GetAsync(id);
+
+    //public override async Task<ActionResponse<IEnumerable<Tournament>>> GetAsync() => await _tournamentsRepository.GetAsync();
+
+    public override async Task<ActionResponse<IEnumerable<Tournament>>> GetAsync(PaginationDTO pagination) => await _tournamentsRepository.GetAsync(pagination);
+}
