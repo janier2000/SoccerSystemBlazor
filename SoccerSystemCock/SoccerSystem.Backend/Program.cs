@@ -82,6 +82,9 @@ builder.Services.AddScoped<ITournamentsUnitOfWork, TournamentsUnitOfWork>();
 builder.Services.AddScoped<ITournamentTeamsRepository, TournamentTeamsRepository>();
 builder.Services.AddScoped<ITournamentTeamsUnitOfWork, TournamentTeamsUnitOfWork>();
 
+builder.Services.AddScoped<IMatchesRepository, MatchesRepository>();
+builder.Services.AddScoped<IMatchesUnitOfWork, MatchesUnitOfWork>();
+
 // esto apra reglas del usuario, como que el email sea unico, o que la contraseña no tenga requisitos de seguridad, etc. Esto se hace para facilitar las pruebas y el desarrollo, pero en un entorno de producción se recomienda establecer reglas de seguridad más estrictas para proteger la información de los usuarios.
 // este es debil cuando se pasa a produccion colocarle mas cosas
 builder.Services.AddIdentity<User, IdentityRole>(x =>
