@@ -20,8 +20,13 @@ public class User : IdentityUser
     [Display(Name = "Image", ResourceType = typeof(Literals))]
     public string? Photo { get; set; }
 
+    public string PhotoFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
+
     [Display(Name = "UserType", ResourceType = typeof(Literals))]
     public UserType UserType { get; set; }
+
+    [Display(Name = "User", ResourceType = typeof(Literals))]
+    public string FullName => $"{FirstName} {LastName}";
 
     [Display(Name = "Country", ResourceType = typeof(Literals))]
     [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
@@ -30,9 +35,6 @@ public class User : IdentityUser
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Country Country { get; set; } = null!;
 
-    [Display(Name = "User", ResourceType = typeof(Literals))]
-    public string FullName => $"{FirstName} {LastName}";
-
     public ICollection<Group>? GroupsManaged { get; set; }
 
     public ICollection<UserGroup>? GroupsBelong { get; set; }
@@ -40,6 +42,4 @@ public class User : IdentityUser
     //public ICollection<Prediction>? Predictions { get; set; }
 
     //public int PredictionsCount => Predictions == null ? 0 : Predictions.Count;
-
-    //public string PhotoFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
 }

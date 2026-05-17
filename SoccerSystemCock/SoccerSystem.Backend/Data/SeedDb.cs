@@ -29,7 +29,7 @@ public class SeedDb
         await CheckRolesAsync();
         await CheckUsersAsync1();
         await CheckTournamentsAsync();
-        await CheckGroupsAsync();
+        //await CheckGroupsAsync();
     }
 
     private async Task CheckRolesAsync()
@@ -92,7 +92,7 @@ public class SeedDb
     {
         if (!_context.Groups.Any())
         {
-            var zulu = await _context.Users.FirstOrDefaultAsync(x => x.UserName == "zulu@yopmail.com");
+            var zulu = await _context.Users.FirstOrDefaultAsync(x => x.UserName == "jomr@yopmail.com");
             var ledys = await _context.Users.FirstOrDefaultAsync(x => x.UserName == "ledys@yopmail.com");
             var brad = await _context.Users.FirstOrDefaultAsync(x => x.UserName == "brad@yopmail.com");
             var angelina = await _context.Users.FirstOrDefaultAsync(x => x.UserName == "angelina@yopmail.com");
@@ -119,16 +119,25 @@ public class SeedDb
                 Members =
                 [
                     new UserGroup { IsActive = true, User = zulu! },
-                new UserGroup { IsActive = true, User = ledys! },
-                new UserGroup { IsActive = true, User = brad! },
-                new UserGroup { IsActive = true, User = angelina! },
-                new UserGroup { IsActive = true, User = bob! },
-                new UserGroup { IsActive = true, User = celia! },
-                new UserGroup { IsActive = true, User = fredy! },
-                new UserGroup { IsActive = true, User = selena! },
-            ],
+                    new UserGroup { IsActive = true, User = ledys! },
+                    new UserGroup { IsActive = true, User = brad! },
+                    new UserGroup { IsActive = true, User = angelina! },
+                    new UserGroup { IsActive = true, User = bob! },
+                    new UserGroup { IsActive = true, User = celia! },
+                    new UserGroup { IsActive = true, User = fredy! },
+                    new UserGroup { IsActive = true, User = selena! },
+                ],
             };
             _context.Add(zuluGoup);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
             var selenaGoup = new Group
             {
@@ -142,14 +151,14 @@ public class SeedDb
                 Members =
                 [
                     new UserGroup { IsActive = true, User = zulu! },
-                new UserGroup { IsActive = true, User = celia! },
-                new UserGroup { IsActive = true, User = fredy! },
-                new UserGroup { IsActive = true, User = hector! },
-                new UserGroup { IsActive = true, User = liv! },
-                new UserGroup { IsActive = true, User = otep! },
-                new UserGroup { IsActive = true, User = ozzy! },
-                new UserGroup { IsActive = true, User = selena! },
-            ],
+                    new UserGroup { IsActive = true, User = celia! },
+                    new UserGroup { IsActive = true, User = fredy! },
+                    new UserGroup { IsActive = true, User = hector! },
+                    new UserGroup { IsActive = true, User = liv! },
+                    new UserGroup { IsActive = true, User = otep! },
+                    new UserGroup { IsActive = true, User = ozzy! },
+                    new UserGroup { IsActive = true, User = selena! },
+                ],
             };
             _context.Add(selenaGoup);
 

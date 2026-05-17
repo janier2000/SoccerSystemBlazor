@@ -5,6 +5,7 @@ using SoccerSystem.Backend.Helpers;
 using SoccerSystem.Backend.Repositories.Interfaces;
 using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Responses;
 
 namespace SoccerSystem.Backend.Repositories.Implementations;
 
@@ -29,7 +30,7 @@ public class UsersRepository : IUsersRepository
     {
         if (!string.IsNullOrEmpty(user.Photo) && !user.Photo.StartsWith("http"))
         {
-            var imageBase64 = Convert.FromBase64String(user.Photo!);
+            //var imageBase64 = Convert.FromBase64String(user.Photo!);
             //user.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "users");
         }
 
@@ -93,5 +94,43 @@ public class UsersRepository : IUsersRepository
     public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
     {
         return await _userManager.ConfirmEmailAsync(user, token);
+    }
+
+    public async Task<ActionResponse<IEnumerable<User>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Users.Include(x => x.Country).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.FirstName.ToLower().Contains(pagination.Filter.ToLower()) ||
+                                             x.LastName.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        return new ActionResponse<IEnumerable<User>>
+        {
+            WasSuccess = true,
+            Result = await queryable.OrderBy(x => x.FirstName)
+                                    .ThenBy(x => x.LastName)
+                                    .Paginate(pagination)
+                                    .ToListAsync()
+        };
+    }
+
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Users.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.FirstName.ToLower().Contains(pagination.Filter.ToLower()) ||
+                                             x.LastName.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 }

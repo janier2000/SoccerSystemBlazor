@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SoccerSystem.Backend.Data;
 using SoccerSystem.Backend.Helpers;
@@ -27,6 +29,30 @@ public class AccountsController : ControllerBase
         _configuration = configuration;
         _mailHelper = mailHelper;
         _context = context;
+    }
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpGet("paginated")]
+    public async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+    {
+        var response = await _usersUnitOfWork.GetAsync(pagination);
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return BadRequest();
+    }
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpGet("totalRecordsPaginated")]
+    public async Task<IActionResult> GetPagesAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _usersUnitOfWork.GetTotalRecordsAsync(pagination);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
     }
 
     [HttpPost("CreateUser")]
