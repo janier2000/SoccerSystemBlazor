@@ -179,4 +179,60 @@ public class UserGroupsRepository : GenericRepository<UserGroup>, IUserGroupsRep
             };
         }
     }
+
+    public async Task<ActionResponse<UserGroup>> JoinAsync(JoinGroupDTO joinGroupDTO)
+    {
+        var group = await _context.Groups.FirstOrDefaultAsync(x => x.Code == joinGroupDTO.Code);
+        if (group == null)
+        {
+            return new ActionResponse<UserGroup>
+            {
+                WasSuccess = false,
+                Message = "ERR017"
+            };
+        }
+
+        var user = await _usersRepository.GetUserAsync(joinGroupDTO.UserName!);
+        if (user == null)
+        {
+            return new ActionResponse<UserGroup>
+            {
+                WasSuccess = false,
+                Message = "ERR013"
+            };
+        }
+
+        var userGroup = new UserGroup
+        {
+            Group = group,
+            User = user,
+        };
+
+        _context.Add(userGroup);
+        try
+        {
+            await _context.SaveChangesAsync();
+            return new ActionResponse<UserGroup>
+            {
+                WasSuccess = true,
+                Result = userGroup
+            };
+        }
+        catch (DbUpdateException)
+        {
+            return new ActionResponse<UserGroup>
+            {
+                WasSuccess = false,
+                Message = "ERR003"
+            };
+        }
+        catch (Exception exception)
+        {
+            return new ActionResponse<UserGroup>
+            {
+                WasSuccess = false,
+                Message = exception.Message
+            };
+        }
+    }
 }

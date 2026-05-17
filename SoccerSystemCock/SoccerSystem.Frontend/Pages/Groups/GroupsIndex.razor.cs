@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
 using SoccerSystem.Frontend.Helpers;
-using SoccerSystem.Frontend.Pages.GroupJoin;
 using SoccerSystem.Frontend.Pages.GroupUser;
 using SoccerSystem.Frontend.Repositories;
 using SoccerSystem.Frontend.Shared;
@@ -14,6 +13,7 @@ using SoccerSystem.Shared.Resources;
 using System.Net;
 using System.Security.Cryptography;
 using TextCopy;
+using j = SoccerSystem.Frontend.Pages.JoinGroup;
 
 namespace SoccerSystem.Frontend.Pages.Groups;
 
@@ -152,7 +152,7 @@ public partial class GroupsIndex
     private async Task ShowModalJoinAsync()
     {
         var options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
-        var dialog = DialogService.Show<JoinGroup>($"{Localizer["JoinExistingGroup"]}", options);
+        var dialog = DialogService.Show<j.JoinGroup>($"{Localizer["JoinExistingGroup"]}", options);
 
         var result = await dialog.Result;
         if (result!.Canceled)

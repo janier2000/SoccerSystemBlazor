@@ -73,4 +73,16 @@ public class UserGroupsController : GenericController<UserGroup>
         }
         return BadRequest(action.Message);
     }
+
+    [HttpPost("join")]
+    public async Task<IActionResult> PostAsync(JoinGroupDTO joinGroupDTO)
+    {
+        joinGroupDTO.UserName = User.Identity!.Name!;
+        var action = await _userGroupsUnitOfWork.JoinAsync(joinGroupDTO);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest(action.Message);
+    }
 }
