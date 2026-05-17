@@ -1,6 +1,5 @@
 ﻿using SoccerSystem.Shared.Enums;
 using SoccerSystem.Shared.Resources;
-using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
@@ -24,7 +23,6 @@ public class User : IdentityUser
     [Display(Name = "UserType", ResourceType = typeof(Literals))]
     public UserType UserType { get; set; }
 
-
     [Display(Name = "Country", ResourceType = typeof(Literals))]
     [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public int CountryId { get; set; }
@@ -32,13 +30,12 @@ public class User : IdentityUser
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Country Country { get; set; } = null!;
 
-
     [Display(Name = "User", ResourceType = typeof(Literals))]
     public string FullName => $"{FirstName} {LastName}";
 
-    //public ICollection<Group>? GroupsManaged { get; set; }
+    public ICollection<Group>? GroupsManaged { get; set; }
 
-    //public ICollection<UserGroup>? GroupsBelong { get; set; }
+    public ICollection<UserGroup>? GroupsBelong { get; set; }
 
     //public ICollection<Prediction>? Predictions { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoccerSystem.Backend.Data;
+using SoccerSystem.Backend.Helpers;
 using SoccerSystem.Backend.Repositories.Interfaces;
 using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
@@ -13,18 +14,27 @@ public class UsersRepository : IUsersRepository
     private readonly UserManager<User> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly SignInManager<User> _signInManager;
+    private readonly IFileStorage _fileStorage;
 
-    public UsersRepository(DataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+    public UsersRepository(DataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IFileStorage fileStorage)
     {
         _context = context;
         _userManager = userManager;
         _roleManager = roleManager;
         _signInManager = signInManager;
+        _fileStorage = fileStorage;
     }
 
     public async Task<IdentityResult> AddUserAsync(User user, string password)
     {
-        return await _userManager.CreateAsync(user, password);
+        if (!string.IsNullOrEmpty(user.Photo) && !user.Photo.StartsWith("http"))
+        {
+            var imageBase64 = Convert.FromBase64String(user.Photo!);
+            //user.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "users");
+        }
+
+        var result = await _userManager.CreateAsync(user, password);
+        return result;
     }
 
     public async Task AddUserToRoleAsync(User user, string roleName)

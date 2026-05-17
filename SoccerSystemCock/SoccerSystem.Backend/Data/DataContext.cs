@@ -13,20 +13,26 @@ public class DataContext : IdentityDbContext<User>
     }
 
     public DbSet<Country> Countries { get; set; }
+    public DbSet<Group> Groups { get; set; }
     public DbSet<Match> Matches { get; set; }
+    public DbSet<Prediction> Predictions { get; set; }
     public DbSet<Team> Teams { get; set; }
     public DbSet<Tournament> Tournaments { get; set; }
     public DbSet<TournamentTeam> TournamentTeams { get; set; }
+    public DbSet<UserGroup> UserGroups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Country>().HasIndex(x => x.Name).IsUnique();
         modelBuilder.Entity<Tournament>().HasIndex(x => x.Name).IsUnique();
+        modelBuilder.Entity<Group>().HasIndex(x => x.Code).IsUnique();
 
         //valida que el nombre del equipo sea unico por pais, es decir, no puede haber dos equipos con el mismo nombre en el mismo pais, pero si puede haber dos equipos con el mismo nombre en paises diferentes
         modelBuilder.Entity<Team>().HasIndex(x => new { x.CountryId, x.Name }).IsUnique();
         modelBuilder.Entity<TournamentTeam>().HasIndex(x => new { x.TournamentId, x.TeamId }).IsUnique();
+        modelBuilder.Entity<Prediction>().HasIndex(x => new { x.GroupId, x.MatchId, x.UserId }).IsUnique();
+        modelBuilder.Entity<UserGroup>().HasIndex(x => new { x.UserId, x.GroupId }).IsUnique();
 
         // deshabilita el borrado en cascada, es decir, si se borra un pais, no se borran sus equipos, sino que se lanza una excepcion, esto es para evitar que se borren datos por accidente
         DisableCascadingDelete(modelBuilder);
