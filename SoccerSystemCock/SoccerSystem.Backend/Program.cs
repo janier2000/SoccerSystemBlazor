@@ -64,17 +64,20 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnec
 builder.Services.AddTransient<SeedDb>();// para agregar datos ala base de datos
 builder.Services.AddScoped<IFileStorage, FileStorage>();// para agregar imagenes a azure storage
 
-builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
+builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<IGroupsRepository, GroupsRepository>();
+builder.Services.AddScoped<IGroupsUnitOfWork, GroupsUnitOfWork>();
+
+builder.Services.AddScoped<IMatchesRepository, MatchesRepository>();
+builder.Services.AddScoped<IMatchesUnitOfWork, MatchesUnitOfWork>();
+
 builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
 builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
-
-builder.Services.AddScoped<IUsersRepository, UsersRepository>();
-builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
 
 builder.Services.AddScoped<ITournamentsRepository, TournamentsRepository>();
 builder.Services.AddScoped<ITournamentsUnitOfWork, TournamentsUnitOfWork>();
@@ -82,8 +85,8 @@ builder.Services.AddScoped<ITournamentsUnitOfWork, TournamentsUnitOfWork>();
 builder.Services.AddScoped<ITournamentTeamsRepository, TournamentTeamsRepository>();
 builder.Services.AddScoped<ITournamentTeamsUnitOfWork, TournamentTeamsUnitOfWork>();
 
-builder.Services.AddScoped<IMatchesRepository, MatchesRepository>();
-builder.Services.AddScoped<IMatchesUnitOfWork, MatchesUnitOfWork>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
 
 // esto apra reglas del usuario, como que el email sea unico, o que la contraseña no tenga requisitos de seguridad, etc. Esto se hace para facilitar las pruebas y el desarrollo, pero en un entorno de producción se recomienda establecer reglas de seguridad más estrictas para proteger la información de los usuarios.
 // este es debil cuando se pasa a produccion colocarle mas cosas
