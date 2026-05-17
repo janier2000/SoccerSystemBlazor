@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using SoccerSystem.Frontend;
 using SoccerSystem.Frontend.AuthenticationProviders;
+using SoccerSystem.Frontend.Helpers;
 using SoccerSystem.Frontend.Repositories;
 using SoccerSystem.Frontend.Services;
 
@@ -34,5 +35,8 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationProviderJWT>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationProviderJWT>(x => x.GetRequiredService<AuthenticationProviderJWT>());
 builder.Services.AddScoped<ILoginService, AuthenticationProviderJWT>(x => x.GetRequiredService<AuthenticationProviderJWT>());
+
+//para utilizar los javascrip propios de la aplicacion
+builder.Services.AddScoped<IClipboardService, ClipboardService>();
 
 await builder.Build().RunAsync();
