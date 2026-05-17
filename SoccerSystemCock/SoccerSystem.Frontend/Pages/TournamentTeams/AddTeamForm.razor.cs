@@ -9,7 +9,7 @@ using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
 using SoccerSystem.Shared.Resources;
 
-namespace SoccerSystem.Frontend.Pages.Tournaments;
+namespace SoccerSystem.Frontend.Pages.TournamentTeams;
 
 public partial class AddTeamForm
 {

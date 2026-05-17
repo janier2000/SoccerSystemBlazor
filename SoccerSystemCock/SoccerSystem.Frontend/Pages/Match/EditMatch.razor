@@ -1,0 +1,15 @@
+﻿@if (matchDTO is null)
+{
+    <Loading />
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <MatchForm @ref="addMatchForm"
+                       MatchDTO="matchDTO"
+                       OnValidSubmit="EditAsync"
+                       ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

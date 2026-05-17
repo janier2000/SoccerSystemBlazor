@@ -5,12 +5,12 @@ using SoccerSystem.Frontend.Repositories;
 using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Resources;
 
-namespace SoccerSystem.Frontend.Pages.Tournaments;
+namespace SoccerSystem.Frontend.Pages.Match;
 
-public partial class AddTeam
+public partial class AddMatch
 {
-    private TournamentTeamDTO? tournamentTeamDTO;
-    private AddTeamForm? addTeamForm;
+    private MatchDTO? matchDTO;
+    private MatchForm? addMatchForm;
 
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
@@ -22,20 +22,22 @@ public partial class AddTeam
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        tournamentTeamDTO = new TournamentTeamDTO()
+        matchDTO = new MatchDTO
         {
+            IsActive = true,
             TournamentId = Id,
         };
     }
 
     private async Task AddAsync()
     {
-        var responseHttp = await Repository.PostAsync("api/TournamentTeams/full", tournamentTeamDTO);
+        matchDTO!.Date = matchDTO.Date.ToUniversalTime();
+        var responseHttp = await Repository.PostAsync("api/Matches/full", matchDTO);
 
         if (responseHttp.Error)
         {
-            var menssageError = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[menssageError!], Severity.Error);
+            var mensajeError = await responseHttp.GetErrorMessageAsync();
+            Snackbar.Add(Localizer[mensajeError!], Severity.Error);
             return;
         }
 
@@ -45,7 +47,7 @@ public partial class AddTeam
 
     private void Return()
     {
-        addTeamForm!.FormPostedSuccessfully = true;
-        NavigationManager.NavigateTo($"/tournament/teams/{Id}");
+        addMatchForm!.FormPostedSuccessfully = true;
+        NavigationManager.NavigateTo($"/matches/{Id}");
     }
 }
