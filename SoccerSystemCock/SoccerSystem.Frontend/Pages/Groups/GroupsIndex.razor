@@ -42,6 +42,7 @@ else
             <MudTh>@Localizer["Code"]</MudTh>
             <MudTh style="width: 80px;">@Localizer["IsActive"]</MudTh>
            @*  <MudTh># @Localizer["Members"]</MudTh> *@
+            <MudTh style="width: 80px;">@Localizer["CopyInvitationURLTitle"]</MudTh>
             <MudTh>@Localizer["Actions"]</MudTh>
         </HeaderContent>
         <RowTemplate>
@@ -69,6 +70,14 @@ else
                 }
             </MudTd>
             @* <MudTd>@context.MembersCount</MudTd> *@
+            <MudTd>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Secondary"
+                           OnClick="@(() => CopyInvitationAsync(@context))"
+                           Disabled="@(!context.IsActive)">
+                    <MudIcon Icon="@Icons.Material.Filled.ContentCopy" />
+                </MudButton>
+            </MudTd>
             <MudTd>
                 <MudStack Spacing="2">
                     <MudButton Variant="Variant.Filled"

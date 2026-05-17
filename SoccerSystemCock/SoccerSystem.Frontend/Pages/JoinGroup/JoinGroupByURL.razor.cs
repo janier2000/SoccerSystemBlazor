@@ -1,0 +1,61 @@
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
+using MudBlazor;
+using SoccerSystem.Frontend.Repositories;
+using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Resources;
+
+namespace SoccerSystem.Frontend.Pages.JoinGroup;
+
+public partial class JoinGroupByURL
+{
+    private string? message;
+    private Group? group;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+    [Inject] private IDialogService DialogService { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
+    [Inject] private IRepository Repository { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+
+    [Parameter, SupplyParameterFromQuery] public string Code { get; set; } = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var responseHttp = await Repository.GetAsync<Group>($"api/groups/code/{Code}");
+
+        if (responseHttp.Error)
+        {
+            if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Snackbar.Add(Localizer["ERR017"], Severity.Error);
+                NavigationManager.NavigateTo("groups");
+            }
+            else
+            {
+                var messageError = await responseHttp.GetErrorMessageAsync();
+                Snackbar.Add(messageError, Severity.Error);
+                NavigationManager.NavigateTo("/");
+            }
+            return;
+        }
+        group = responseHttp.Response;
+    }
+
+    protected async Task JoinGroupAsync()
+    {
+        var responseHttp = await Repository.PostAsync($"/api/usergroups/join?code={Code}", new JoinGroupDTO { Code = Code });
+        if (responseHttp.Error)
+        {
+            message = await responseHttp.GetErrorMessageAsync();
+            NavigationManager.NavigateTo("/");
+            Snackbar.Add(Localizer[message!], Severity.Error);
+            return;
+        }
+
+        Snackbar.Add(Localizer["UserAddedToGroupOk"], Severity.Success);
+        var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+        NavigationManager.NavigateTo("/groups");
+    }
+}

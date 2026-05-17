@@ -216,26 +216,6 @@ public class GroupsRepository : GenericRepository<Group>, IGroupsRepository
         }
     }
 
-    public async Task<ActionResponse<Group>> GetAsync(string code)
-    {
-        var group = await _context.Groups.FirstOrDefaultAsync(x => x.Code == code);
-
-        if (group == null)
-        {
-            return new ActionResponse<Group>
-            {
-                WasSuccess = false,
-                Message = "ERR001"// registro no existe
-            };
-        }
-
-        return new ActionResponse<Group>
-        {
-            WasSuccess = true,
-            Result = group
-        };
-    }
-
     public async Task CheckPredictionsForAllMatchesAsync(int id)
     {
         var group = await _context.Groups
@@ -297,6 +277,26 @@ public class GroupsRepository : GenericRepository<Group>, IGroupsRepository
         {
             WasSuccess = true,
             Result = groups
+        };
+    }
+
+    public async Task<ActionResponse<Group>> GetAsync(string code)
+    {
+        var group = await _context.Groups.FirstOrDefaultAsync(x => x.Code == code);
+
+        if (group == null)
+        {
+            return new ActionResponse<Group>
+            {
+                WasSuccess = false,
+                Message = "ERR001"// registro no existe
+            };
+        }
+
+        return new ActionResponse<Group>
+        {
+            WasSuccess = true,
+            Result = group
         };
     }
 }

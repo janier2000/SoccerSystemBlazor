@@ -1,7 +1,9 @@
 using CurrieTechnologies.Razor.SweetAlert2;
+using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
+using SoccerSystem.Frontend.Helpers;
 using SoccerSystem.Frontend.Repositories;
 using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Entites;
@@ -20,6 +22,9 @@ public partial class GroupCreate
     [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
     [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
 
+    [Inject] private IStringLocalizer<Parameters> Parameters { get; set; } = null!;
+    [Inject] private IClipboardService ClipboardService { get; set; } = null!;
+
     private async Task CreateAsync()
     {
         groupDTO.Code = "123456";
@@ -32,12 +37,15 @@ public partial class GroupCreate
             return;
         }
         var group = responseHttp.Response;
+        var joinURL = $"{Parameters["URLFront"]}/groups/join/?code={group!.Code}";
+        await ClipboardService.CopyToClipboardAsync(joinURL);
 
         Return();
         var result = await SweetAlertService.FireAsync(new SweetAlertOptions
         {
             Title = Localizer["Confirmation"],
-            Text = string.Format(Localizer["GroupCreated"], group!.Name, group.Code),
+            //Text = string.Format(Localizer["GroupCreated"], group!.Name, group.Code),
+            Text = string.Format(Localizer["GroupCreated"], group!.Name, group.Code, joinURL),
             Icon = SweetAlertIcon.Info,
         });
     }

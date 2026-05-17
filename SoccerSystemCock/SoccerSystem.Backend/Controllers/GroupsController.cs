@@ -76,4 +76,15 @@ public class GroupsController : GenericController<Group>
         }
         return BadRequest(action.Message);
     }
+
+    [HttpGet("code/{code}")]
+    public async Task<IActionResult> GetAsync(string code)
+    {
+        var response = await _groupsUnitOfWork.GetAsync(code);
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return NotFound(response.Message);
+    }
 }
