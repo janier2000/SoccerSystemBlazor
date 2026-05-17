@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
 using SoccerSystem.Frontend.Helpers;
-using SoccerSystem.Frontend.Pages.GroupUser;
+using SoccerSystem.Frontend.Pages.GroupOthers;
 using SoccerSystem.Frontend.Repositories;
 using SoccerSystem.Frontend.Shared;
 using SoccerSystem.Shared.Entites;
@@ -84,11 +84,6 @@ public partial class GroupsIndex
         await ClipboardService.CopyToClipboardAsync(joinURL);
         var text = string.Format(Localizer["InvitationURLCopied"], group!.Name);
         Snackbar.Add(text, Severity.Success);
-    }
-
-    private void GroupDetails(Group group)
-    {
-        NavigationManager.NavigateTo($"/groups/details/{group.Id}/false");
     }
 
     private async Task LoadTotalRecordsAsync()
@@ -218,5 +213,10 @@ public partial class GroupsIndex
         await LoadTotalRecordsAsync();
         await table.ReloadServerData();
         Snackbar.Add(Localizer["RecordDeletedOk"], Severity.Success);
+    }
+
+    private void GroupDetails(Group group)
+    {
+        NavigationManager.NavigateTo($"/groups/details/{group.Id}");
     }
 }

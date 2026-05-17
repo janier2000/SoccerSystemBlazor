@@ -17,4 +17,6 @@ public interface IGroupsRepository
     Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 
     Task<ActionResponse<Group>> GetAsync(string code);
+
+    Task CheckPredictionsForAllMatchesAsync(int id);
 }

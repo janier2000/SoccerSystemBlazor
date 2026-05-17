@@ -216,54 +216,6 @@ public class GroupsRepository : GenericRepository<Group>, IGroupsRepository
         }
     }
 
-    public async Task CheckPredictionsForAllMatchesAsync(int id)
-    {
-        var group = await _context.Groups
-                                  .Include(x => x.Members)
-                                  .FirstOrDefaultAsync(x => x.Id == id);
-        if (group == null)
-        {
-            return;
-        }
-
-        var tournament = await _context.Tournaments
-                                       .Include(x => x.Matches)
-                                       .FirstOrDefaultAsync(x => x.Id == group.TournamentId);
-        if (tournament == null)
-        {
-            return;
-        }
-
-        var newPredictions = new List<Prediction>();
-        foreach (var userGroup in group.Members!)
-        {
-            foreach (var match in tournament!.Matches!)
-            {
-                var prediction = await _context.Predictions.FirstOrDefaultAsync(x => x.GroupId == group.Id &&
-                                                                                     x.Match.Id == match.Id &&
-                                                                                     x.UserId == userGroup.UserId &&
-                                                                                     x.TournamentId == tournament.Id);
-                if (prediction == null)
-                {
-                    newPredictions.Add(new Prediction
-                    {
-                        Group = group,
-                        Match = match,
-                        Tournament = tournament,
-                        User = userGroup.User,
-                        UserId = userGroup.UserId,
-                    });
-                }
-            }
-        }
-
-        if (newPredictions.Count > 0)
-        {
-            _context.AddRange(newPredictions);
-            await _context.SaveChangesAsync();
-        }
-    }
-
     public async Task<ActionResponse<IEnumerable<Group>>> GetAllAsync()
     {
         var groups = await _context.Groups
@@ -298,5 +250,60 @@ public class GroupsRepository : GenericRepository<Group>, IGroupsRepository
             WasSuccess = true,
             Result = group
         };
+    }
+
+    public async Task CheckPredictionsForAllMatchesAsync(int id)
+    {
+        var group = await _context.Groups
+            .Include(x => x.Members)
+            .FirstOrDefaultAsync(x => x.Id == id);
+        if (group == null)
+        {
+            return;
+        }
+
+        var tournament = await _context.Tournaments
+            .Include(x => x.Matches)
+            .FirstOrDefaultAsync(x => x.Id == group.TournamentId);
+        if (group == null)
+        {
+            return;
+        }
+
+        var newPredictions = new List<Prediction>();
+        foreach (var userGroup in group.Members!)
+        {
+            foreach (var match in tournament!.Matches!)
+            {
+                var prediction = await _context.Predictions.FirstOrDefaultAsync(x => x.GroupId == group.Id &&
+                                                                                        x.Match.Id == match.Id &&
+                                                                                        x.UserId == userGroup.UserId &&
+                                                                                        x.TournamentId == tournament.Id);
+                if (prediction == null)
+                {
+                    newPredictions.Add(new Prediction
+                    {
+                        Group = group,
+                        Match = match,
+                        Tournament = tournament,
+                        User = userGroup.User,
+                        UserId = userGroup.UserId,
+                    });
+                }
+            }
+        }
+
+        if (newPredictions.Count > 0)
+        {
+            try
+            {
+                _context.AddRange(newPredictions);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
     }
 }
