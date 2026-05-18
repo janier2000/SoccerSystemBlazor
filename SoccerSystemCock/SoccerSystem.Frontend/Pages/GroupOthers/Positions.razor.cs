@@ -118,10 +118,10 @@ public partial class Positions
             FullWidth = true
         };
         var parameters = new DialogParameters
-        {
-            { "GroupId", GroupId },
-            { "Email", positionDTO.User.Email }
-        };
+    {
+        { "GroupId", GroupId },
+        { "Email", positionDTO.User.Email }
+    };
         var dialog = DialogService.Show<Balance>(Localizer["PredictionsBalance"], parameters, options);
 
         await dialog.Result;

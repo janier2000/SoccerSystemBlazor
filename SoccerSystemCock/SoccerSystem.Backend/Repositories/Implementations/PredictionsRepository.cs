@@ -295,22 +295,37 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
         };
     }
 
+    public virtual bool CanWatch(Prediction prediction)
+    {
+        if (prediction.Match.GoalsLocal != null || prediction.Match.GoalsVisitor != null)
+        {
+            return true;
+        }
+
+        var dateMatch = prediction.Match.Date.ToLocalTime();
+        var currentDate = DateTime.Now;
+        var minutesMatch = dateMatch.Subtract(DateTime.MinValue).TotalMinutes;
+        var minutesNow = currentDate.Subtract(DateTime.MinValue).TotalMinutes;
+        var difference = minutesNow - minutesMatch;
+        var canWatch = difference >= -10;
+        return canWatch;
+    }
+
     public async Task<ActionResponse<IEnumerable<Prediction>>> GetAllPredictionsAsync(PaginationDTO pagination)
     {
-        var queryable = _context.Predictions
-                                .Include(x => x.Match)
-                                .ThenInclude(x => x.Local)
-                                .Include(x => x.Match)
-                                .ThenInclude(x => x.Visitor)
-                                .Include(x => x.User)
-                                .AsQueryable();
+        var queryable = _context.Predictions.Include(x => x.Match)
+                                            .ThenInclude(x => x.Local)
+                                            .Include(x => x.Match)
+                                            .ThenInclude(x => x.Visitor)
+                                            .Include(x => x.User)
+                                            .AsQueryable();
         queryable = queryable.Where(x => x.GroupId == pagination.Id);
         queryable = queryable.Where(x => x.MatchId == pagination.Id2);
 
         if (!string.IsNullOrWhiteSpace(pagination.Filter))
         {
             queryable = queryable.Where(x => x.User.FirstName.ToLower().Contains(pagination.Filter.ToLower()) ||
-                                                x.User.LastName.ToLower().Contains(pagination.Filter.ToLower()));
+                                             x.User.LastName.ToLower().Contains(pagination.Filter.ToLower()));
         }
 
         return new ActionResponse<IEnumerable<Prediction>>
@@ -346,13 +361,12 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
     public async Task<ActionResponse<IEnumerable<Prediction>>> GetBalanceAsync(PaginationDTO pagination)
     {
         var queryable = _context.Predictions
-                                .Include(x => x.Match)
-                                .ThenInclude(x => x.Local)
-                                .Include(x => x.Match)
-                                .ThenInclude(x => x.Visitor)
-                                .Include(x => x.User)
-                                .AsQueryable();
-        queryable = queryable.Where(x => x.Match.GoalsLocal != null && x.Match.GoalsVisitor != null);
+            .Include(x => x.Match)
+            .ThenInclude(x => x.Local)
+            .Include(x => x.Match)
+            .ThenInclude(x => x.Visitor)
+            .Include(x => x.User)
+            .AsQueryable();
         queryable = queryable.Where(x => x.GroupId == pagination.Id);
         queryable = queryable.Where(x => x.User.Email == pagination.Email);
 
@@ -365,24 +379,24 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
         return new ActionResponse<IEnumerable<Prediction>>
         {
             WasSuccess = true,
-            Result = await queryable.OrderBy(x => x.User.FirstName)
-                                    .ThenBy(x => x.User.LastName)
-                                    .Paginate(pagination)
-                                    .ToListAsync()
+            Result = await queryable
+                .OrderBy(x => x.User.FirstName)
+                .ThenBy(x => x.User.LastName)
+                .Paginate(pagination)
+                .ToListAsync()
         };
     }
 
     public async Task<ActionResponse<int>> GetTotalRecordsBalanceAsync(PaginationDTO pagination)
     {
         var queryable = _context.Predictions.AsQueryable();
-        queryable = queryable.Where(x => x.Match.GoalsLocal != null && x.Match.GoalsVisitor != null);
         queryable = queryable.Where(x => x.GroupId == pagination.Id);
         queryable = queryable.Where(x => x.User.Email == pagination.Email);
 
         if (!string.IsNullOrWhiteSpace(pagination.Filter))
         {
             queryable = queryable.Where(x => x.Match.Local.Name.ToLower().Contains(pagination.Filter.ToLower()) ||
-                                             x.Match.Visitor.Name.ToLower().Contains(pagination.Filter.ToLower()));
+                                                x.Match.Visitor.Name.ToLower().Contains(pagination.Filter.ToLower()));
         }
 
         double count = await queryable.CountAsync();
@@ -391,21 +405,5 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
             WasSuccess = true,
             Result = (int)count
         };
-    }
-
-    public virtual bool CanWatch(Prediction prediction)
-    {
-        if (prediction.Match.GoalsLocal != null || prediction.Match.GoalsVisitor != null)
-        {
-            return true;
-        }
-
-        var dateMatch = prediction.Match.Date.ToLocalTime();
-        var currentDate = DateTime.Now;
-        var minutesMatch = dateMatch.Subtract(DateTime.MinValue).TotalMinutes;
-        var minutesNow = currentDate.Subtract(DateTime.MinValue).TotalMinutes;
-        var difference = minutesNow - minutesMatch;
-        var canWatch = difference >= -10;
-        return canWatch;
     }
 }

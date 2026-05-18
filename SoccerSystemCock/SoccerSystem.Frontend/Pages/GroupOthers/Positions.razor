@@ -40,14 +40,14 @@ else
             <MudTd>
                 <MudText Typo="Typo.h3" Align="Align.Center">@context.Points</MudText>
             </MudTd>
-           @*  <MudTd>
+             <MudTd>
                 <MudButton Variant="Variant.Filled"
                            EndIcon="@Icons.Material.Filled.Visibility"
                            Color="Color.Info"
-                           OnClick=@(() => WatchPredictionAsync(@context))>
+                           OnClick=@(() => WatchBalanceAsync(@context))>
                     @Localizer["Watch"] @Localizer["Predictions"]
                 </MudButton>
-            </MudTd> *@
+            </MudTd> 
 
         </RowTemplate>
         <NoRecordsContent>

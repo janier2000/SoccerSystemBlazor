@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
 using SoccerSystem.Frontend.Repositories;
@@ -30,6 +31,7 @@ public partial class Predictions
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = null!;
 
     [Parameter, SupplyParameterFromQuery] public string Filter { get; set; } = string.Empty;
 
@@ -158,10 +160,10 @@ public partial class Predictions
             FullWidth = true
         };
         var parameters = new DialogParameters
-        {
-            { "GroupId", prediction.GroupId },
-            { "MatchId", prediction.MatchId }
-        };
+    {
+        { "GroupId", prediction.GroupId },
+        { "MatchId", prediction.MatchId }
+    };
         var dialog = DialogService.Show<WatchPredictions>($"{Localizer["Watch"]} {Localizer["Predictions"]}", parameters, options);
 
         await dialog.Result;
@@ -181,5 +183,16 @@ public partial class Predictions
         }
         var userGroup = responseHttp.Response;
         userEnabledForGroup = userGroup!.IsActive;
+    }
+
+    private async Task LoadUserNameAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            username = user.Identity.Name!;
+        }
     }
 }

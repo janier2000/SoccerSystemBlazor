@@ -17,4 +17,6 @@ public interface IUserGroupsRepository
     Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 
     Task<ActionResponse<UserGroup>> JoinAsync(JoinGroupDTO joinGroupDTO);
+
+    Task<ActionResponse<UserGroup>> GetAsync(int groupId, string email);
 }

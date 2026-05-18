@@ -113,6 +113,15 @@ else
                                     <MudIcon Icon="@Icons.Material.Filled.People" />
                                 </MudButton>
                             </MudTooltip>
+
+                            <MudTooltip Text="@Localizer["AdminUsersGroup"]">
+                                <MudButton Variant="Variant.Filled"
+                                           Color="Color.Primary"
+                                           OnClick="@(() => AdminUsersGroupAsync(@context))"
+                                           Disabled="@(!context.IsActive)">
+                                    <MudIcon Icon="@Icons.Material.Filled.People" />
+                                </MudButton>
+                            </MudTooltip>
                         </MudStack>
                     }
                 </MudStack>
