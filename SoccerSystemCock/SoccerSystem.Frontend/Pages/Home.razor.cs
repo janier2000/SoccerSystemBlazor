@@ -23,10 +23,16 @@ public partial class Home
 
     [Inject] private IDialogService DialogService { get; set; } = null!;
 
+    [Inject] private LanguageService LanguageService { get; set; } = null!;
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
+    private string selectedLanguage = "es"; // Default to Spanish
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
         await LoadGroupsAsync();
+        selectedLanguage = LanguageService.CurrentLanguage;
     }
 
     private async Task LoadGroupsAsync()
@@ -68,5 +74,11 @@ public partial class Home
             var dialog = DialogService.Show<GroupDetails>(@Localizer["GroupDetails"], parameters, options);
             await dialog.Result;
         }
+    }
+
+    private void ChangeLanguage(string language)
+    {
+        LanguageService.SetLanguage(language);
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }
 }

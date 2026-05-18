@@ -39,4 +39,18 @@ builder.Services.AddScoped<ILoginService, AuthenticationProviderJWT>(x => x.GetR
 //para utilizar los javascrip propios de la aplicacion
 builder.Services.AddScoped<IClipboardService, ClipboardService>();
 
-await builder.Build().RunAsync();
+// Register language service and localStorage service for managing language preferences
+builder.Services.AddScoped<LanguageService>();
+builder.Services.AddScoped<LocalStorageService>();
+
+// Build the application
+var host = builder.Build();
+
+// Retrieve the language service to set the initial language based on user preferences or browser language
+var languageService = host.Services.GetRequiredService<LanguageService>();
+
+// Initialize the language preference (from localStorage or browser)
+await languageService.InitializeLanguageAsync(); // This will set the initial culture based on local storage or browser
+
+// Run the application
+await host.RunAsync();
