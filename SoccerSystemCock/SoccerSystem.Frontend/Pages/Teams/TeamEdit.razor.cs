@@ -24,7 +24,6 @@ public partial class TeamEdit
     protected override async Task OnInitializedAsync()
     {
         var responseHttp = await Repository.GetAsync<Team>($"api/teams/{Id}");
-
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -45,7 +44,8 @@ public partial class TeamEdit
                 Id = team!.Id,
                 Name = team!.Name,
                 Image = team.Image,
-                CountryId = team.CountryId
+                CountryId = team.CountryId,
+                //IsImageSquare = team.IsImageSquare
             };
             selectedCountry = team.Country!;
         }
@@ -53,7 +53,7 @@ public partial class TeamEdit
 
     private async Task EditAsync()
     {
-        var responseHttp = await Repository.PutAsync("api/teams/full", teamDTO);
+        var responseHttp = await Repository.PutAsync("api/teams/Edit", teamDTO);
 
         if (responseHttp.Error)
         {
@@ -63,7 +63,7 @@ public partial class TeamEdit
         }
 
         Return();
-        Snackbar.Add(Localizer["RecordSavedOk"], Severity.Success);
+        Snackbar.Add(Localizer["RecordSavedOk"], Severity.Success); //Registro guardado con éxito
     }
 
     private void Return()

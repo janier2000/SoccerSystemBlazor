@@ -118,4 +118,16 @@ public partial class TeamForm
         selectedCountry = country;
         TeamDTO.CountryId = country.Id;
     }
+
+    private void SetImageSquare()
+    {
+        TeamDTO.IsImageSquare = true;
+        shapeImageMessage = Localizer["ImageIsSquare"];
+    }
+
+    private void SetImageRectangular()
+    {
+        TeamDTO.IsImageSquare = false;
+        shapeImageMessage = Localizer["ImageIsRectangular"];
+    }
 }

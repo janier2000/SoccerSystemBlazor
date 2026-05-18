@@ -19,7 +19,7 @@ else
                 <MudText Typo="Typo.h6" Class="me-4"> @Localizer["Teams"]</MudText>
                 <MudButton Variant="Variant.Outlined"
                            EndIcon="@Icons.Material.Filled.Add"
-                           Color="Color.Info" OnClick="@(() => ShowModalAsync())">
+                           Color="Color.Info" OnClick="@(() => ShowModalCreateAsync())">
                     @Localizer["New"]
                 </MudButton>
             </div>
@@ -29,20 +29,39 @@ else
         <HeaderContent>
             <MudTh>@Localizer["Team"]</MudTh>
             <MudTh>@Localizer["Image"]</MudTh>
+            @* <MudTh>@Localizer["IsImageSquare"]</MudTh> *@
             <MudTh>@Localizer["Country"]</MudTh>
             <MudTh>@Localizer["Actions"]</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>@context.Name</MudTd>
             <MudTd>
-                <MudImage Src="@context.ImageFull" Width="90" Height="60" />
+              @*   @if (context.IsImageSquare)
+                {
+                    <MudImage Src="@context.ImageFull" Width="60" Height="60" />
+                }
+                else
+                { *@
+                    <MudImage Src="@context.ImageFull" Width="90" Height="60" />
+                @* } *@
+
             </MudTd>
+           @*  <MudTd>
+                @if (context.IsImageSquare)
+                {
+                    <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Color="Color.Success" />
+                }
+                else
+                {
+                    <MudIcon Icon="@Icons.Material.Filled.Cancel" Color="Color.Error" />
+                }
+            </MudTd> *@
             <MudTd>@context.Country!.Name</MudTd>
             <MudTd>
                 <MudTooltip Text="@Localizer["Edit"]">
                     <MudButton Variant="Variant.Filled"
                                Color="Color.Warning"
-                               OnClick="@(() => ShowModalAsync(context.Id, true))">
+                               OnClick="@(() => ShowModalEditAsync(context.Id))">
                         <MudIcon Icon="@Icons.Material.Filled.Edit" />
                     </MudButton>
                 </MudTooltip>

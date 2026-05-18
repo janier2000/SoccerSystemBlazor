@@ -1,9 +1,10 @@
-using MudBlazor;
-using SoccerSystem.Shared.DTOs;
-using SoccerSystem.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using Microsoft.Win32;
+using MudBlazor;
 using SoccerSystem.Frontend.Repositories;
+using SoccerSystem.Shared.DTOs;
+using SoccerSystem.Shared.Resources;
 
 namespace SoccerSystem.Frontend.Pages.Teams;
 
@@ -19,7 +20,7 @@ public partial class TeamCreate
 
     private async Task CreateAsync()
     {
-        var responseHttp = await Repository.PostAsync("/api/teams/full", teamDTO);
+        var responseHttp = await Repository.PostAsync("/api/teams/Create", teamDTO);
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
@@ -28,7 +29,7 @@ public partial class TeamCreate
         }
 
         Return();
-        Snackbar.Add(Localizer["RecordCreatedOk"], Severity.Success);
+        Snackbar.Add(Localizer["RecordCreatedOk"], Severity.Success); // Registro creado con éxito.
     }
 
     private void Return()

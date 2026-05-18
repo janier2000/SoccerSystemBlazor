@@ -11,7 +11,7 @@ using SoccerSystem.Shared.Resources;
 namespace SoccerSystem.Frontend.Pages.Teams;
 
 [Authorize(Roles = "Admin")]
-public partial class TeamsIndex
+public partial class TeamIndex
 {
     private List<Team>? Teams { get; set; }
     private MudTable<Team> table = new();
@@ -92,22 +92,34 @@ public partial class TeamsIndex
         await table.ReloadServerData();
     }
 
-    private async Task ShowModalAsync(int id = 0, bool isEdit = false)
+    private async Task ShowModalCreateAsync()
     {
-        var options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
-        IDialogReference? dialog;
-        if (isEdit)
+        var options = new DialogOptions()
         {
-            var parameters = new DialogParameters
-                {
-                    { "Id", id }
-                };
-            dialog = DialogService.Show<TeamEdit>($"{Localizer["Edit"]} {Localizer["Team"]}", parameters, options);
-        }
-        else
+            CloseOnEscapeKey = true,
+            CloseButton = true
+        };
+        IDialogReference? dialog = DialogService.Show<TeamCreate>($"{Localizer["New"]} {Localizer["Team"]}", options);
+        var result = await dialog.Result;
+        if (result!.Canceled)
         {
-            dialog = DialogService.Show<TeamCreate>($"{Localizer["New"]} {Localizer["Team"]}", options);
+            await LoadTotalRecordsAsync();
+            await table.ReloadServerData();
         }
+    }
+
+    private async Task ShowModalEditAsync(int Id)
+    {
+        var options = new DialogOptions()
+        {
+            CloseOnEscapeKey = true,
+            CloseButton = true
+        };
+        var parameters = new DialogParameters
+        {
+            { "Id", Id }
+        };
+        IDialogReference? dialog = DialogService.Show<TeamEdit>($"{Localizer["Edit"]} {Localizer["Team"]}", parameters, options);
 
         var result = await dialog.Result;
         if (result!.Canceled)
@@ -120,10 +132,19 @@ public partial class TeamsIndex
     private async Task DeleteAsync(Team team)
     {
         var parameters = new DialogParameters
+        {
             {
-                { "Message", string.Format(Localizer["DeleteConfirm"], Localizer["Team"], team.Name) }
-            };
-        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true };
+            "Message",
+            string.Format(Localizer["DeleteConfirm"],
+            Localizer["Team"], team.Name)
+            }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            MaxWidth = MaxWidth.ExtraSmall,
+            CloseOnEscapeKey = true
+        };
         var dialog = DialogService.Show<ConfirmDialog>(Localizer["Confirmation"], parameters, options);
         var result = await dialog.Result;
         if (result!.Canceled)
@@ -147,6 +168,6 @@ public partial class TeamsIndex
         }
         await LoadTotalRecordsAsync();
         await table.ReloadServerData();
-        Snackbar.Add(Localizer["RecordDeletedOk"], Severity.Success);
+        Snackbar.Add(Localizer["RecordDeletedOk"], Severity.Success); //Registro borrado con éxito
     }
 }
