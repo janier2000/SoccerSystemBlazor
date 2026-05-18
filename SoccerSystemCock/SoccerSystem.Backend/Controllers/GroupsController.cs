@@ -94,4 +94,16 @@ public class GroupsController : GenericController<Group>
         await _groupsUnitOfWork.CheckPredictionsForAllMatchesAsync(id);
         return Ok();
     }
+
+    [AllowAnonymous]
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllAsync()
+    {
+        var response = await _groupsUnitOfWork.GetAllAsync();
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return BadRequest();
+    }
 }

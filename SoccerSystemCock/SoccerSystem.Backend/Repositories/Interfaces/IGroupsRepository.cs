@@ -19,4 +19,6 @@ public interface IGroupsRepository
     Task<ActionResponse<Group>> GetAsync(string code);
 
     Task CheckPredictionsForAllMatchesAsync(int id);
+
+    Task<ActionResponse<IEnumerable<Group>>> GetAllAsync();
 }

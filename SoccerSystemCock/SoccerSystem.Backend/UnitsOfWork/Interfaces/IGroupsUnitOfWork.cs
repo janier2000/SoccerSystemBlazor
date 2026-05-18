@@ -19,4 +19,6 @@ public interface IGroupsUnitOfWork
     Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 
     Task CheckPredictionsForAllMatchesAsync(int id);
+
+    Task<ActionResponse<IEnumerable<Group>>> GetAllAsync();
 }
