@@ -22,11 +22,16 @@ else
     </MudPaper>
 
     <MudTabs>
-        <MudTabPanel Text="@Localizer["Predictions"]">
-            <MudContainer MaxWidth="MaxWidth.Large">
-                <Predictions GroupId="GroupId"/>
-            </MudContainer>
-        </MudTabPanel>
+
+        @if (!IsAnonymouns)
+        {
+
+            <MudTabPanel Text="@Localizer["Predictions"]">
+                <MudContainer MaxWidth="MaxWidth.Large">
+                    <Predictions GroupId="GroupId" />
+                </MudContainer>
+            </MudTabPanel>
+        }
         <MudTabPanel Text="@Localizer["Positions"]">
             <MudContainer MaxWidth="MaxWidth.Large">
                 <Positions GroupId="GroupId" />

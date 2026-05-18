@@ -198,7 +198,8 @@ public partial class GroupsIndex
 
     private void GroupDetails(Group group)
     {
-        NavigationManager.NavigateTo($"/groupsDetails/{group.Id}");
+        //NavigationManager.NavigateTo($"/groupsDetails/{group.Id}");
+        NavigationManager.NavigateTo($"/groupsDetails/{group.Id}/false");
     }
 
     private async Task AdminUsersGroupAsync(Group group)

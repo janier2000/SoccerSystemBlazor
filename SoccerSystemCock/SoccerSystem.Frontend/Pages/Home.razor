@@ -42,16 +42,13 @@
                                 </MudStack>
                             </MudStack>
                         </MudCardContent>
-                        <MudCardActions Style="width: 100%; justify-content: space-around;">
+                        <MudCardActions>
                             <MudButton Variant="Variant.Filled"
                                        EndIcon="@Icons.Material.Filled.SportsSoccer"
-                                       Color="Color.Primary">
-                                @Localizer["Predictions"]
-                            </MudButton>
-                            <MudButton Variant="Variant.Filled"
-                                       EndIcon="@Icons.Material.Filled.Stars"
-                                       Color="Color.Secondary">
-                                @Localizer["Positions"]
+                                       OnClick="@(() => GroupDetailsAsync(group))"
+                                       Color="Color.Primary"
+                                       Class="m-2">
+                                @Localizer["GroupDetails"]
                             </MudButton>
                         </MudCardActions>
                     </MudCard>
