@@ -128,8 +128,7 @@ public partial class Predictions
         var minutesNow = currentDate.Subtract(DateTime.MinValue).TotalMinutes;
         var difference = minutesNow - minutesMatch;
         var canWatch = difference >= -10;
-        return canWatch; 
-        
+        return canWatch;
     }
 
     private async Task EditPredictionAsync(int id)

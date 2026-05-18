@@ -1,23 +1,25 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
 using SoccerSystem.Frontend.Repositories;
-using SoccerSystem.Shared.DTOs;
 using SoccerSystem.Shared.Resources;
+using e = SoccerSystem.Shared.Entites;
 
 namespace SoccerSystem.Frontend.Pages.GroupOthers;
 
-[Authorize(Roles = "Admin, User")]
-public partial class Positions
+public partial class Balance
 {
-    private List<PositionDTO>? positions;
-    private MudTable<PositionDTO> table = new();
+    private List<e.Prediction>? predictions;
+    private MudTable<e.Prediction> table = new();
     private readonly int[] pageSizeOptions = { 10, 25, 50, int.MaxValue };
     private int totalRecords = 0;
     private bool loading;
-    private const string baseUrlMatch = "api/predictions";
+    private const string baseUrl = "api/predictions";
     private string infoFormat = "{first_item}-{last_item} de {all_items}";
+    private e.Match? match;
+
+    [Parameter] public int GroupId { get; set; }
+    [Parameter] public string Email { get; set; } = null!;
 
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private IDialogService DialogService { get; set; } = null!;
@@ -26,8 +28,6 @@ public partial class Positions
     [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
 
     [Parameter, SupplyParameterFromQuery] public string Filter { get; set; } = string.Empty;
-    [Parameter] public int GroupId { get; set; }
-    [Parameter] public bool IsAnonymouns { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,7 +43,7 @@ public partial class Positions
     {
         loading = true;
 
-        var url = $"{baseUrlMatch}/totalRecordsForPositionsPaginated/?id={GroupId}";
+        var url = $"{baseUrl}/totalRecordsBalance/?id={GroupId}&email={Email}";
         if (!string.IsNullOrWhiteSpace(Filter))
         {
             url += $"&filter={Filter}";
@@ -52,7 +52,7 @@ public partial class Positions
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message], Severity.Error);
+            Snackbar.Add(Localizer[message!], Severity.Error);
             return false;
         }
         totalRecords = responseHttp.Response;
@@ -60,29 +60,29 @@ public partial class Positions
         return true;
     }
 
-    private async Task<TableData<PositionDTO>> LoadListAsync(TableState state, CancellationToken cancellationToken)
+    private async Task<TableData<e.Prediction>> LoadListAsync(TableState state, CancellationToken cancellationToken)
     {
         int page = state.Page + 1;
         int pageSize = state.PageSize;
-        var url = $"{baseUrlMatch}/positions/?id={GroupId}&page={page}&recordsnumber={pageSize}";
+        var url = $"{baseUrl}/paginatedBalance/?id={GroupId}&email={Email}&page={page}&recordsnumber={pageSize}";
 
         if (!string.IsNullOrWhiteSpace(Filter))
         {
             url += $"&filter={Filter}";
         }
 
-        var responseHttp = await Repository.GetAsync<List<PositionDTO>>(url);
+        var responseHttp = await Repository.GetAsync<List<e.Prediction>>(url);
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message], Severity.Error);
-            return new TableData<PositionDTO> { Items = [], TotalItems = 0 };
+            Snackbar.Add(Localizer[message!], Severity.Error);
+            return new TableData<e.Prediction> { Items = [], TotalItems = 0 };
         }
         if (responseHttp.Response == null)
         {
-            return new TableData<PositionDTO> { Items = [], TotalItems = 0 };
+            return new TableData<e.Prediction> { Items = [], TotalItems = 0 };
         }
-        return new TableData<PositionDTO>
+        return new TableData<e.Prediction>
         {
             Items = responseHttp.Response,
             TotalItems = totalRecords
@@ -98,32 +98,6 @@ public partial class Positions
 
     private void ReturnAction()
     {
-        if (IsAnonymouns)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-        else
-        {
-            NavigationManager.NavigateTo("/groups");
-        }
-    }
-
-    private async Task WatchBalanceAsync(PositionDTO positionDTO)
-    {
-        var options = new DialogOptions()
-        {
-            CloseOnEscapeKey = true,
-            CloseButton = true,
-            MaxWidth = MaxWidth.Medium,
-            FullWidth = true
-        };
-        var parameters = new DialogParameters
-        {
-            { "GroupId", GroupId },
-            { "Email", positionDTO.User.Email }
-        };
-        var dialog = DialogService.Show<Balance>(Localizer["PredictionsBalance"], parameters, options);
-
-        await dialog.Result;
+        NavigationManager.NavigateTo($"/groups/details/{GroupId}/false");
     }
 }

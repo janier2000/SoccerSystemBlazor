@@ -178,6 +178,7 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
         var currentPrediction = await _context.Predictions
                                               .Include(x => x.Match)
                                               .FirstOrDefaultAsync(x => x.Id == predictionDTO.Id);
+
         if (currentPrediction == null)
         {
             return new ActionResponse<Prediction>
@@ -196,7 +197,9 @@ public class PredictionsRepository : GenericRepository<Prediction>, IPredictions
             };
         }
 
-        if (CanWatch(currentPrediction))
+        var difference = currentPrediction.Match.Date - DateTime.UtcNow;
+        var minutes = difference.TotalMinutes;
+        if (minutes <= 10)
         {
             return new ActionResponse<Prediction>
             {

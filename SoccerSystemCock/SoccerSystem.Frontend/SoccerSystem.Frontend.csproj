@@ -221,6 +221,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Match\CloseMatch.razor.cs~RF5aff344.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.8" />

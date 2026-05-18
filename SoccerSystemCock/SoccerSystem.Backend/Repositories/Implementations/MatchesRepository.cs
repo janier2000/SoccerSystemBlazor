@@ -5,6 +5,7 @@ using SoccerSystem.Shared.Responses;
 using SoccerSystem.Shared.Entites;
 using Microsoft.EntityFrameworkCore;
 using SoccerSystem.Backend.Helpers;
+using SoccerSystem.Shared.Enums;
 
 namespace SoccerSystem.Backend.Repositories.Implementations;
 
@@ -209,10 +210,10 @@ public class MatchesRepository : GenericRepository<Match>, IMatchesRepository
         try
         {
             await _context.SaveChangesAsync();
-            //if (currentMatch.GoalsLocal != null && currentMatch.GoalsVisitor != null)
-            //{
-            //    //await CloseMatchAsync(currentMatch);
-            //}
+            if (currentMatch.GoalsLocal != null && currentMatch.GoalsVisitor != null)
+            {
+                await CloseMatchAsync(currentMatch);
+            }
             return new ActionResponse<Match>
             {
                 WasSuccess = true,
@@ -237,45 +238,42 @@ public class MatchesRepository : GenericRepository<Match>, IMatchesRepository
         }
     }
 
-    //public async Task CloseMatchAsync(Match match)
-    //{
-    //    match.IsClosed = true;
-    //    _context.Update(match);
+    private async Task CloseMatchAsync(Match match)
+    {
+        var predictions = await _context.Predictions
+            .Where(x => x.MatchId == match.Id)
+            .ToListAsync();
+        foreach (var prediction in predictions)
+        {
+            var points = CalculatePoints(match, prediction);
+            prediction.Points = points;
+            _context.Update(prediction);
+        }
+        await _context.SaveChangesAsync();
+    }
 
-    //    var predictions = await _context.Predictions
-    //        .Where(x => x.MatchId == match.Id)
-    //        .ToListAsync();
-    //    foreach (var prediction in predictions)
-    //    {
-    //        var points = CalculatePoints(match, prediction);
-    //        prediction.Points = points;
-    //        _context.Update(prediction);
-    //    }
-    //    await _context.SaveChangesAsync();
-    //}
+    public int CalculatePoints(Match match, Prediction prediction)
+    {
+        int points = 0;
+        if (prediction.GoalsLocal == null || prediction.GoalsVisitor == null)
+        {
+            return points;
+        }
 
-    //public int CalculatePoints(Match match, Prediction prediction)
-    //{
-    //    int points = 0;
-    //    if (prediction.GoalsLocal == null || prediction.GoalsVisitor == null)
-    //    {
-    //        return points;
-    //    }
+        var matchStatus = GetMatchStatus(match.GoalsLocal!.Value, match.GoalsVisitor!.Value);
+        var predictionStatus = GetMatchStatus(prediction.GoalsLocal!.Value, prediction.GoalsVisitor!.Value);
+        if (matchStatus == predictionStatus) points += 5;
+        if (match.GoalsLocal == prediction.GoalsLocal) points += 2;
+        if (match.GoalsVisitor == prediction.GoalsVisitor) points += 2;
+        if (Math.Abs((decimal)match.GoalsLocal! - (decimal)match.GoalsVisitor!) == Math.Abs((decimal)prediction.GoalsLocal! - (decimal)prediction.GoalsVisitor!)) points++;
+        if (match.DoublePoints) points *= 2;
+        return points;
+    }
 
-    //    var matchStatus = GetMatchStatus(match.GoalsLocal!.Value, match.GoalsVisitor!.Value);
-    //    var predictionStatus = GetMatchStatus(prediction.GoalsLocal!.Value, prediction.GoalsVisitor!.Value);
-    //    if (matchStatus == predictionStatus) points += 5;
-    //    if (match.GoalsLocal == prediction.GoalsLocal) points += 2;
-    //    if (match.GoalsVisitor == prediction.GoalsVisitor) points += 2;
-    //    if (Math.Abs((decimal)match.GoalsLocal! - (decimal)match.GoalsVisitor!) == Math.Abs((decimal)prediction.GoalsLocal! - (decimal)prediction.GoalsVisitor!)) points++;
-    //    if (match.DoublePoints) points *= 2;
-    //    return points;
-    //}
-
-    //public MatchStatus GetMatchStatus(int goalsLocal, int goalsVisitor)
-    //{
-    //    if (goalsLocal > goalsVisitor) return MatchStatus.LocalWin;
-    //    if (goalsLocal < goalsVisitor) return MatchStatus.VisitorWin;
-    //    return MatchStatus.Tie;
-    //}
+    public MatchStatus GetMatchStatus(int goalsLocal, int goalsVisitor)
+    {
+        if (goalsLocal > goalsVisitor) return MatchStatus.LocalWin;
+        if (goalsLocal < goalsVisitor) return MatchStatus.VisitorWin;
+        return MatchStatus.Tie;
+    }
 }
