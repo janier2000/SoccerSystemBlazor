@@ -119,4 +119,28 @@ public class PredictionsController : GenericController<Prediction>
         }
         return BadRequest();
     }
+
+    [AllowAnonymous]
+    [HttpGet("totalRecordsForPositionsPaginated")]
+    public async Task<IActionResult> GetTotalRecordsForPositionsAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _predictionsUnitOfWork.GetTotalRecordsForPositionsAsync(pagination);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
+    }
+
+    [AllowAnonymous]
+    [HttpGet("positions")]
+    public async Task<IActionResult> GetPositionsAsync([FromQuery] PaginationDTO pagination)
+    {
+        var response = await _predictionsUnitOfWork.GetPositionsAsync(pagination);
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return BadRequest();
+    }
 }

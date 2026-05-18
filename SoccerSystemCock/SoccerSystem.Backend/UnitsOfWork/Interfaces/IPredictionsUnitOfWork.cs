@@ -23,4 +23,8 @@ public interface IPredictionsUnitOfWork
     Task<ActionResponse<IEnumerable<Prediction>>> GetBalanceAsync(PaginationDTO pagination);
 
     Task<ActionResponse<int>> GetTotalRecordsBalanceAsync(PaginationDTO pagination);
+
+    Task<ActionResponse<int>> GetTotalRecordsForPositionsAsync(PaginationDTO pagination);
+
+    Task<ActionResponse<IEnumerable<PositionDTO>>> GetPositionsAsync(PaginationDTO pagination);
 }
