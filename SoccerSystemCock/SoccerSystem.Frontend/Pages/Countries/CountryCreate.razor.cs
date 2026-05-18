@@ -26,7 +26,6 @@ public partial class CountryCreate
             Snackbar.Add(Localizer[message!], Severity.Error);
             return;
         }
-
         Return();
         Snackbar.Add(Localizer["RecordCreatedOk"], Severity.Success);
     }

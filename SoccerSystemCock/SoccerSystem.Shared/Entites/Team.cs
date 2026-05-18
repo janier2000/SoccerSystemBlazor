@@ -17,6 +17,9 @@ public class Team
     public int CountryId { get; set; }
     public Country? Country { get; set; }
 
+    //[Display(Name = "IsImageSquare", ResourceType = typeof(Literals))]
+    //public bool IsImageSquare { get; set; }
+
     public string ImageFull => string.IsNullOrEmpty(Image) ? "/images/NoImage.png" : Image;
 
     public ICollection<TournamentTeam>? TournamentTeams { get; set; }

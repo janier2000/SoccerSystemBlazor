@@ -1,17 +1,15 @@
-using MudBlazor;
-using System.Net;
-using SoccerSystem.Shared.Entites;
-using SoccerSystem.Frontend.Shared;
-using SoccerSystem.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Microsoft.AspNetCore.Authorization;
+using MudBlazor;
 using SoccerSystem.Frontend.Repositories;
+using SoccerSystem.Frontend.Shared;
+using SoccerSystem.Shared.Entites;
+using SoccerSystem.Shared.Resources;
+using System.Net;
 
 namespace SoccerSystem.Frontend.Pages.Countries;
 
-[Authorize(Roles = "Admin")]
-public partial class CountriesIndex
+public partial class CountryIndex
 {
     private List<Country>? Countries { get; set; }
     private MudTable<Country> table = new();
@@ -48,7 +46,7 @@ public partial class CountriesIndex
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message], Severity.Error);
+            Snackbar.Add(Localizer[message!], Severity.Error);
             return;
         }
 
@@ -71,7 +69,7 @@ public partial class CountriesIndex
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message], Severity.Error);
+            Snackbar.Add(Localizer[message!], Severity.Error);
             return new TableData<Country> { Items = [], TotalItems = 0 };
         }
         if (responseHttp.Response == null)
@@ -92,22 +90,36 @@ public partial class CountriesIndex
         await table.ReloadServerData();
     }
 
-    private async Task ShowModalAsync(int id = 0, bool isEdit = false)
+    private async Task ShowModalEditAsync(int Id)
     {
-        var options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
-        IDialogReference? dialog;
-        if (isEdit)
+        var options = new DialogOptions()
         {
-            var parameters = new DialogParameters
-                {
-                    { "Id", id }
-                };
-            dialog = DialogService.Show<CountryEdit>($"{Localizer["Edit"]} {Localizer["Country"]}", parameters, options);
-        }
-        else
+            CloseOnEscapeKey = true,
+            CloseButton = true
+        };
+        var parameters = new DialogParameters
         {
-            dialog = DialogService.Show<CountryCreate>($"{Localizer["New"]} {Localizer["Country"]}", options);
+            { "Id", Id }
+        };
+        IDialogReference? dialog = DialogService
+                                 .Show<CountryEdit>($"{Localizer["Edit"]} {Localizer["Country"]}", parameters, options);
+        var result = await dialog.Result;
+        if (result!.Canceled)
+        {
+            await LoadTotalRecordsAsync();
+            await table.ReloadServerData();
         }
+    }
+
+    private async Task ShowModalCreateAsync()
+    {
+        var options = new DialogOptions()
+        {
+            CloseOnEscapeKey = true,
+            CloseButton = true
+        };
+        IDialogReference? dialog = DialogService
+                                   .Show<CountryCreate>($"{Localizer["New"]} {Localizer["Country"]}", options);
 
         var result = await dialog.Result;
         if (result!.Canceled)
@@ -120,10 +132,19 @@ public partial class CountriesIndex
     private async Task DeleteAsync(Country country)
     {
         var parameters = new DialogParameters
+        {
             {
-                { "Message", string.Format(Localizer["DeleteConfirm"], Localizer["Country"], country.Name) }
-            };
-        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true };
+                "Message",
+                string.Format(Localizer["DeleteConfirm"],
+                Localizer["Country"], country.Name)
+            }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            MaxWidth = MaxWidth.ExtraSmall,
+            CloseOnEscapeKey = true
+        };
         var dialog = DialogService.Show<ConfirmDialog>(Localizer["Confirmation"], parameters, options);
         var result = await dialog.Result;
         if (result!.Canceled)
@@ -141,7 +162,7 @@ public partial class CountriesIndex
             else
             {
                 var message = await responseHttp.GetErrorMessageAsync();
-                Snackbar.Add(Localizer[message], Severity.Error);
+                Snackbar.Add(Localizer[message!], Severity.Error);
             }
             return;
         }
