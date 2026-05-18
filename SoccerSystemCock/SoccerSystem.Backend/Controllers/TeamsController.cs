@@ -16,6 +16,17 @@ public class TeamsController : GenericController<Team>
         _teamsUnitOfWork = teamsUnitOfWork;
     }
 
+    [HttpPost("Create")]
+    public async Task<IActionResult> PostAsync(TeamDTO teamDTO)
+    {
+        var action = await _teamsUnitOfWork.AddAsync(teamDTO);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest(action.Message);
+    }
+
     [HttpGet]
     public override async Task<IActionResult> GetAsync()
     {
@@ -44,18 +55,7 @@ public class TeamsController : GenericController<Team>
         return Ok(await _teamsUnitOfWork.GetComboAsync(countryId));
     }
 
-    [HttpPost("full")]
-    public async Task<IActionResult> PostAsync(TeamDTO teamDTO)
-    {
-        var action = await _teamsUnitOfWork.AddAsync(teamDTO);
-        if (action.WasSuccess)
-        {
-            return Ok(action.Result);
-        }
-        return BadRequest(action.Message);
-    }
-
-    [HttpPut("full")]
+    [HttpPut("Edit")]
     public async Task<IActionResult> PutAsync(TeamDTO teamDTO)
     {
         var action = await _teamsUnitOfWork.UpdateAsync(teamDTO);
